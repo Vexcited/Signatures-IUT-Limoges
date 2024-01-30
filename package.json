@@ -1,0 +1,18 @@
+{
+  "name": "signatures-iut-limoges",
+  "version": "1.0.0",
+  "description": "Fetch your averages for each semester of the IUT (University Institute of Technology) of Limoges in a very simple way.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "tsx": "tsx"
+  },
+  "keywords": [],
+  "author": "Mikkel RINGAUD <mikkel@milescode.dev> (https://github.com/Vexcited)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.10",
+    "dotenv": "^16.4.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
