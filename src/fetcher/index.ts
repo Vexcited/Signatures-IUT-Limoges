@@ -1,17 +1,26 @@
-import { U_VPN_HOST, U_VPN_TOKEN_COOKIE } from "../utils/constants";
-import { fetchSignaturesPage } from "./signatures";
-import { authenticateVPN, readProxyID } from "./vpn"
+import { initWebSSLVPNSession } from "fortigate-web-sslvpn";
+import { SIGNATURES_HEADERS, SIGNATURES_URL, U_VPN_ORIGIN } from "../utils/constants";
+
+const createLoginBody = (username: string, password: string) => `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
 
 export const readSignaturesPageFromWebVPN = async (username: string, password: string) => {
-  const token = await authenticateVPN(username, password);
-  const proxyID = await readProxyID(token);
+  const vpn = await initWebSSLVPNSession(username, password, U_VPN_ORIGIN);
 
-  const url = `${U_VPN_HOST}/proxy/${proxyID}/https/iut-signatures.unilim.fr/index.php`;
-  const cookie = `${U_VPN_TOKEN_COOKIE}=${token}`;
+  const response = await vpn.request(SIGNATURES_URL, {
+    method: "POST",
+    headers: SIGNATURES_HEADERS,
+    body: createLoginBody(username, password),
+  });
 
-  return fetchSignaturesPage(username, password, { url, cookie });
+  return response.data;
 };
 
 export const readSignaturesPage = async (username: string, password: string) => {
-  return fetchSignaturesPage(username, password);
+  const response = await fetch(SIGNATURES_URL, {
+    method: "POST",
+    headers: SIGNATURES_HEADERS,
+    body: createLoginBody(username, password),
+  });
+
+  return response.text();
 };
