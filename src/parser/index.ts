@@ -1,13 +1,20 @@
 import * as cheerio from 'cheerio';
 
-export const dumpSignatureResponse = (html: string) => {
+import type {
+  SignaturesDump,
+  SignaturesModuleDump,
+  SignaturesSemesterDump,
+  SignaturesSkillDump
+} from './types';
+
+export const dumpSignatureResponse = (html: string): SignaturesDump => {
   const $ = cheerio.load(html);
 
   const firstName = $("#prenom").text();
   const familyName = $("#nom").text();
   const className = $("#classe").text();
 
-  const semesters = [];
+  const semesters: SignaturesSemesterDump[] = [];
   $("table").each(function () {
     const table = $(this);
     const tableID = table.attr("id");
@@ -17,7 +24,7 @@ export const dumpSignatureResponse = (html: string) => {
     const [shortTableName, ...fullTableNameParts] = header.children().first().text().split(" ");
     const fullTableName = fullTableNameParts.join(" ");
 
-    const skills = [];
+    const skills: SignaturesSkillDump[] = [];
 
     table.find($("tr.tr_ue")).each(function () {
       const ue = $(this);
@@ -30,7 +37,7 @@ export const dumpSignatureResponse = (html: string) => {
       }
 
       const [, shortSkillName, ...fullSkillNameParts] = skillGlobalData[0].split(" ");
-      const averages = [];
+      const modules: SignaturesModuleDump[] = [];
 
       const tableID = ue.attr("data-tt-id");
       table.find($(`tr.tr_module[data-tt-parent-id="${tableID}"]`)).each(function () {
@@ -45,10 +52,10 @@ export const dumpSignatureResponse = (html: string) => {
 
         const [shortModuleName, ...fullModuleNameParts] = moduleData[0].split(" ");
 
-        averages.push({
+        modules.push({
           id: shortModuleName,
           name: fullModuleNameParts.join(" "),
-          value: parseFloat(moduleData[1]),
+          average: parseFloat(moduleData[1]),
           absences: parseInt(moduleData[2]) || 0,
           coefficient: parseFloat(moduleData[3])
         });
@@ -60,7 +67,7 @@ export const dumpSignatureResponse = (html: string) => {
         globalAverage: parseFloat(skillGlobalData[1]),
         absences: parseInt(skillGlobalData[2]) || 0,
         coefficient: parseFloat(skillGlobalData[3]),
-        averages
+        modules
       })
     });
 
