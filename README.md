@@ -50,4 +50,14 @@ import { readSignaturesPage } from "signatures-iut-limoges";
 // or if you want to use the Web VPN
 import { readSignaturesPageFromWebVPN } from "signatures-iut-limoges";
 
+const html = await readSignaturesPage("username", "password");
+// or if you want to use the Web VPN
+const html = await readSignaturesPageFromWebVPN("username", "password");
+
+// Now, we have to dump the HTML into something readable.
+import { dumpSignatureResponse } from "signatures-iut-limoges";
+const dump = dumpSignatureResponse(html);
+
+// Do whatever you want with the dump !
+console.log(dump);
 ```
