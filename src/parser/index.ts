@@ -51,20 +51,23 @@ export const dumpSignatureResponse = (html: string): SignaturesDump => {
         }
 
         const [shortModuleName, ...fullModuleNameParts] = moduleData[0].split(" ");
+        const average = parseFloat(moduleData[1]);
 
         modules.push({
           id: shortModuleName,
           name: fullModuleNameParts.join(" "),
-          average: parseFloat(moduleData[1]),
+          average: isNaN(average) ? null : average,
           absences: parseInt(moduleData[2]) || 0,
           coefficient: parseFloat(moduleData[3])
         });
       });
 
+      const globalAverage = parseFloat(skillGlobalData[1]);
+
       skills.push({
         id: shortSkillName,
         name: fullSkillNameParts.join(" "),
-        globalAverage: parseFloat(skillGlobalData[1]),
+        globalAverage: isNaN(globalAverage) ? null : globalAverage,
         absences: parseInt(skillGlobalData[2]) || 0,
         coefficient: parseFloat(skillGlobalData[3]),
         modules
