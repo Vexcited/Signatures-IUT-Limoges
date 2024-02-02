@@ -61,3 +61,45 @@ const dump = dumpSignatureResponse(html);
 // Do whatever you want with the dump !
 console.log(dump);
 ```
+
+Example usage of this can be found in the [`example` directory](./example/).
+
+## Output
+
+Return type of `dumpSignatureResponse` is `SignaturesDump`, let's see what you can do with this.
+
+Note that everything written below is just extracted for the source code itself, you can look at the types directly here: [types.ts](./src/types.ts).
+
+```typescript
+interface SignaturesDump {
+  firstName: string
+  familyName: string
+  className: string
+  semesters: Array<SignaturesSemesterDump>
+}
+
+interface SignaturesSemesterDump {
+  shortName: string
+  name: string
+  skills: Array<SignaturesSkillDump>
+}
+
+interface SignaturesSkillDump {
+  id: string
+  name: string
+  globalAverage: number
+  absences: number
+  coefficient: number
+  modules: Array<SignaturesModuleDump>
+}
+
+interface SignaturesModuleDump {
+  id: string
+  name: string
+  average: number
+  absences: number
+  coefficient: number
+}
+```
+
+You might have to use IntelliSense to have accurate description (JSDoc) about the types, or just read the code of types as mentioned previously.
