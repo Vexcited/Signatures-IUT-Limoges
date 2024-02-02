@@ -1,11 +1,11 @@
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
 
 import type {
   SignaturesDump,
   SignaturesModuleDump,
   SignaturesSemesterDump,
   SignaturesSkillDump
-} from './types';
+} from "./types";
 
 export const dumpSignatureResponse = (html: string): SignaturesDump => {
   const $ = cheerio.load(html);
@@ -59,7 +59,7 @@ export const dumpSignatureResponse = (html: string): SignaturesDump => {
           absences: parseInt(moduleData[2]) || 0,
           coefficient: parseFloat(moduleData[3])
         });
-      })
+      });
 
       skills.push({
         id: shortSkillName,
@@ -68,15 +68,15 @@ export const dumpSignatureResponse = (html: string): SignaturesDump => {
         absences: parseInt(skillGlobalData[2]) || 0,
         coefficient: parseFloat(skillGlobalData[3]),
         modules
-      })
+      });
     });
 
     semesters.push({
       shortName: shortTableName,
       name: fullTableName,
       skills
-    })
-  })
+    });
+  });
 
   return {
     firstName,

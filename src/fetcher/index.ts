@@ -9,7 +9,7 @@ export const readSignaturesPageFromWebVPN = async (username: string, password: s
   const response = await vpn.request(SIGNATURES_URL, {
     method: "POST",
     headers: SIGNATURES_HEADERS,
-    body: createLoginBody(username, password),
+    body: createLoginBody(username, password)
   });
 
   return response.data;
@@ -19,7 +19,7 @@ export const readSignaturesPage = async (username: string, password: string) => 
   const response = await fetch(SIGNATURES_URL, {
     method: "POST",
     headers: SIGNATURES_HEADERS,
-    body: createLoginBody(username, password),
+    body: createLoginBody(username, password)
   });
 
   return response.text();

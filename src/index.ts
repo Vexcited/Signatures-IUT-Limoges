@@ -6,4 +6,4 @@ export type {
   SignaturesModuleDump,
   SignaturesSemesterDump,
   SignaturesSkillDump
-} from "./parser/types"
+} from "./parser/types";

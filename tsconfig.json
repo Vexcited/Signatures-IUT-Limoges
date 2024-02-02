@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+
+  "include": ["src", "example", "eslint.config.js"],
+  "exclude": ["node_modules", "dist"]
+}

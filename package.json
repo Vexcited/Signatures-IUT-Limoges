@@ -1,17 +1,61 @@
 {
   "name": "signatures-iut-limoges",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Fetch your averages for each semester of the IUT (University Institute of Technology) of Limoges in a very simple way.",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
   "scripts": {
+    "build": "tsup ./src/index.ts --dts --minify terser --clean --format cjs,esm --sourcemap",
+    "release": "release-it",
+    "lint": "eslint .",
     "tsx": "tsx"
   },
-  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "iut",
+    "limoges",
+    "university",
+    "averages"
+  ],
   "author": "Mikkel RINGAUD <mikkel@milescode.dev> (https://github.com/Vexcited)",
   "license": "MIT",
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release v${version}",
+      "tagAnnotation": "Release v${version}",
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "draft": false,
+      "releaseName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "hooks": {
+      "before:init": "pnpm lint",
+      "after:bump": "pnpm build"
+    }
+  },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^1.5.4",
     "@types/node": "^20.11.10",
+    "@typescript-eslint/parser": "^6.20.0",
     "dotenv": "^16.4.1",
+    "eslint": "^8.56.0",
+    "release-it": "^17.0.3",
+    "terser": "^5.27.0",
+    "tsup": "^8.0.1",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },
