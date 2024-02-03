@@ -14,6 +14,6 @@
     "forceConsistentCasingInFileNames": true
   },
 
-  "include": ["src", "example", "eslint.config.js"],
+  "include": ["src", "eslint.config.js"],
   "exclude": ["node_modules", "dist"]
 }
