@@ -2,7 +2,7 @@
 
 Fetch your averages for each semester of the IUT (University Institute of Technology) of Limoges in a very simple way.
 
-Note that this module is **only usable for students of the IUT of Limoges**, and that is because you need to authenticate using your [Biome (UNILIM)](https://biome.unilim.fr) credentials.
+Note that this module is **only usable for students of the IUT of Limoges**, and that is because you need to authenticate using your [Biome (Unilim)](https://biome.unilim.fr) credentials.
 
 ## Installation
 
@@ -68,7 +68,7 @@ Example usage of this can be found in the [`example` directory](./example/).
 
 Return type of `dumpSignatureResponse` is `SignaturesDump`, let's see what you can do with this.
 
-Note that everything written below is just extracted for the source code itself, you can look at the types directly here: [types.ts](./src/types.ts).
+Note that everything written below is just extracted from the source code itself, you can look at the types directly here: [types.ts](./src/types.ts).
 
 ```typescript
 interface SignaturesDump {
