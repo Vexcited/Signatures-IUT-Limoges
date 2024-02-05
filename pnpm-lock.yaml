@@ -48,8 +48,8 @@ importers:
         specifier: ^0.11.3
         version: 0.11.3(solid-js@1.8.12)
       '@solidjs/start':
-        specifier: ^0.5.0
-        version: 0.5.0(solid-js@1.8.12)(vinxi@0.2.1)(vite@5.0.12)
+        specifier: ^0.5.1
+        version: 0.5.1(solid-js@1.8.12)(vinxi@0.2.1)(vite@5.0.12)
       '@unocss/reset':
         specifier: ^0.58.5
         version: 0.58.5
@@ -1600,8 +1600,8 @@ packages:
       solid-js: 1.8.12
     dev: false
 
-  /@solidjs/start@0.5.0(solid-js@1.8.12)(vinxi@0.2.1)(vite@5.0.12):
-    resolution: {integrity: sha512-JoKYAvwje/ctecxAH9LkDxWMsIIzd8PsOdrA3qLlqpa5lpeO/Hi65LUHDnSa2Xp2ZjPYNfAttQFNY1EojEaRWQ==}
+  /@solidjs/start@0.5.1(solid-js@1.8.12)(vinxi@0.2.1)(vite@5.0.12):
+    resolution: {integrity: sha512-5LJoI3+kRr3Uuxik+5YAuNwEUWsk1/+LBD3cDK2LQIPk3uKyNRoZM8ZU1WTyNQmaoBDXe6Z4Sldbo+DXoZL+9g==}
     dependencies:
       '@vinxi/plugin-directives': 0.2.0(vinxi@0.2.1)
       '@vinxi/server-components': 0.2.0(vinxi@0.2.1)
