@@ -50,6 +50,9 @@ importers:
       '@solidjs/start':
         specifier: ^0.5.0
         version: 0.5.0(solid-js@1.8.12)(vinxi@0.2.1)(vite@5.0.12)
+      cryptr:
+        specifier: ^6.3.0
+        version: 6.3.0
       signatures-iut-limoges:
         specifier: workspace:*
         version: link:../library
@@ -2629,6 +2632,10 @@ packages:
     dependencies:
       type-fest: 1.4.0
     dev: true
+
+  /cryptr@6.3.0:
+    resolution: {integrity: sha512-TA4byAuorT8qooU9H8YJhBwnqD151i1rcauHfJ3Divg6HmukHB2AYMp0hmjv2873J2alr4t15QqC7zAnWFrtfQ==}
+    dev: false
 
   /css-select@5.1.0:
     resolution: {integrity: sha512-nwoRF1rvRRnnCqqY7updORDsuqKzqYJ28+oSMaJMMgOauh3fvwHqMS7EZpIPqK8GL+g9mKxF1vP/ZjSeNjEVHg==}
