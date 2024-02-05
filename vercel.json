@@ -3,6 +3,5 @@
   
   "installCommand": "pnpm install",
   "devCommand": "pnpm -w run website:dev",
-  "buildCommand": "pnpm -w run full:build",
-  "outputDirectory": "packages/website/.output"
+  "buildCommand": "pnpm -w run full:build"
 }
