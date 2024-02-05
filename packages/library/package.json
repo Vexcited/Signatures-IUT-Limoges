@@ -39,7 +39,11 @@
       "releaseName": "v${version}"
     },
     "npm": {
-      "publish": true
+      "publish": true,
+      "skipChecks": true,
+      "versionArgs": [
+        "--workspaces-update=false"
+      ]
     },
     "hooks": {
       "before:init": "pnpm lint",
