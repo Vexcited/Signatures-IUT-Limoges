@@ -3,10 +3,5 @@
   
   "installCommand": "pnpm install",
   "devCommand": "pnpm -w run website:dev",
-  "buildCommand": "pnpm -w run full:build",
-
-  "rewrites": [{
-    "source": "/",
-    "destination": "/__nitro"
-  }]
+  "buildCommand": "pnpm -w run full:build"
 }

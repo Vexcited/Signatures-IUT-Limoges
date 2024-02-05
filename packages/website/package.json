@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
-    "build": "vinxi build",
+    "build": "vinxi build && cp ./.data/config.json ./.vercel/output/config.json",
     "start": "vinxi start"
   },
   "dependencies": {
