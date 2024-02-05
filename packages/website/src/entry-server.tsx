@@ -8,9 +8,10 @@ export default createHandler(() => (
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
+          <title>Signatures IUT - Limoges</title>
           {assets}
         </head>
-        <body>
+        <body class="bg-[rgb(18,18,18)] text-[rgb(250,250,250)]">
           <div id="app">{children}</div>
           {scripts}
         </body>

@@ -5,7 +5,7 @@ import { decryptCredentials } from "../../server/credentials";
 import { createLogoutResponse } from "../../server/logout";
 import { dumpSignatureResponse, readSignaturesPageFromWebVPN } from "signatures-iut-limoges";
 
-export const POST: APIHandler = async ({ nativeEvent }) => {
+export const GET: APIHandler = async ({ nativeEvent }) => {
   const cookie = getCookie(nativeEvent, "credentials");
   if (!cookie) return createLogoutResponse(nativeEvent);
 

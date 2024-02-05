@@ -1,1 +1,1 @@
-export const createDump = () => fetch("/api/dump", { method: "POST" });
+export const createDump = () => fetch("/api/dump", { method: "GET" });

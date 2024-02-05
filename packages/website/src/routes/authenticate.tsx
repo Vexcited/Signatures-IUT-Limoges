@@ -57,34 +57,40 @@ export default function Login() {
   }
 
   return (
-    <main>
-      <h1>Connexion</h1>
-      <form onSubmit={handleAuthenticate}>
-        <div>
-          <input name="username" type="text"
-            value={username()}
-            onInput={(e) => setUsername(e.currentTarget.value)}
-          />
-        </div>
-        <div>
-          <input name="password" type="password"
-            value={password()}
-            onInput={(e) => setPassword(e.currentTarget.value)}
-          />
-        </div>
+    <main class="flex flex-col items-center justify-center h-screen p-4">
+      <h1 class="text-xl">
+        Saisie des identifiants
+      </h1>
+      <p class="text-sm text-center my-2 max-w-[300px]">
+        Ces identifiants vont être utilisé pour se connecter au VPN de l'Université pour enfin se connecter à Signatures.
+      </p>
+
+      <form onSubmit={handleAuthenticate}
+        class="flex flex-col gap-4 w-full max-w-[300px] p-4"
+      >
+        <input name="username" type="text"
+          class="border border-gray-300 rounded-md bg-transparent text-white px-4 py-2"
+          value={username()}
+          onInput={(e) => setUsername(e.currentTarget.value)}
+          placeholder="Nom d'utilisateur"
+        />
+        <input name="password" type="password"
+          class="border border-gray-300 rounded-md bg-transparent text-white px-4 py-2"
+          value={password()}
+          onInput={(e) => setPassword(e.currentTarget.value)}
+          placeholder="Mot de passe"
+        />
         
-        <button type="submit">
-          Connexion à Signatures
+        <button type="submit"
+          disabled={loading()}
+          class="bg-[rgb(248,113,113)] text-white rounded-md px-4 py-2 hover:bg-[rgb(248,113,113)]/90 transition w-full"
+        >
+          {loading() ? "Connexion..." : "Se connecter !"}
         </button>
 
-        <Show when={loading()}>
-          <p>
-            Loading...
-          </p>
-        </Show>
         <Show when={error()}>
-          <p>
-            {error()}
+          <p class="text-red text-sm text-center">
+            Erreur: {error()}
           </p>
         </Show>
       </form>
