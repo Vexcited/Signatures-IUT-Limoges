@@ -3,5 +3,17 @@
   
   "installCommand": "pnpm install",
   "devCommand": "pnpm -w run website:dev",
-  "buildCommand": "pnpm -w run full:build"
+  "buildCommand": "pnpm -w run full:build",
+
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html"
+        }
+      ]
+    }
+  ]
 }
