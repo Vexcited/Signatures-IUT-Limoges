@@ -8,9 +8,13 @@ export const readSignaturesPageFromWebVPN = async (username: string, password: s
 
   const response = await vpn.request(SIGNATURES_URL, {
     method: "POST",
-    headers: SIGNATURES_HEADERS,
+    headers: { ...SIGNATURES_HEADERS },
     body: createLoginBody(username, password)
   });
+
+  if (response.status !== 200) {
+    throw new Error("An error occurred while fetching the signatures page.");
+  }
 
   return response.data;
 };
@@ -18,7 +22,7 @@ export const readSignaturesPageFromWebVPN = async (username: string, password: s
 export const readSignaturesPage = async (username: string, password: string) => {
   const response = await fetch(SIGNATURES_URL, {
     method: "POST",
-    headers: SIGNATURES_HEADERS,
+    headers: { ...SIGNATURES_HEADERS },
     body: createLoginBody(username, password)
   });
 
