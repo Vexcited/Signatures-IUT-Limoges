@@ -9,7 +9,8 @@ export const readSignaturesPageFromWebVPN = async (username: string, password: s
   const response = await vpn.request(SIGNATURES_URL, {
     method: "POST",
     headers: { ...SIGNATURES_HEADERS },
-    body: createLoginBody(username, password)
+    body: createLoginBody(username, password),
+    encoding: "latin1"
   });
 
   if (response.status !== 200) {
@@ -26,5 +27,7 @@ export const readSignaturesPage = async (username: string, password: string) => 
     body: createLoginBody(username, password)
   });
 
-  return response.text();
+  const buffer = await response.arrayBuffer();
+  const decoder = new TextDecoder("latin1");
+  return decoder.decode(buffer);
 };
