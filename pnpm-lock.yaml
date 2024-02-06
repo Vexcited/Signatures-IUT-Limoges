@@ -14,8 +14,8 @@ importers:
         specifier: 1.0.0-rc.12
         version: 1.0.0-rc.12
       fortigate-web-sslvpn:
-        specifier: ^1.1.0
-        version: 1.1.0
+        specifier: ^1.2.0
+        version: 1.2.0
     devDependencies:
       '@stylistic/eslint-plugin':
         specifier: ^1.5.4
@@ -3779,8 +3779,8 @@ packages:
       fetch-blob: 3.2.0
     dev: true
 
-  /fortigate-web-sslvpn@1.1.0:
-    resolution: {integrity: sha512-XSKotAMXfurGZqVNByHRqAHQZd0PKG2jcWJkEwUQ53CXbPwGRStY5GWz1R8MUCK53QJ86JCVQarTOrfHc4zOhw==}
+  /fortigate-web-sslvpn@1.2.0:
+    resolution: {integrity: sha512-0oO386VoeBso92DM+UYMYVWobgTDxGVxg5V174rYeqb59OJqyW993pT8ThtTcxio2AznSSOKPUDxQFgb1wsRiQ==}
     dependencies:
       http-parser-js: 0.5.8
     dev: false

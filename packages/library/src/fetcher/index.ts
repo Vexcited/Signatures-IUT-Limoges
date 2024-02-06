@@ -13,6 +13,9 @@ export const readSignaturesPageFromWebVPN = async (username: string, password: s
     encoding: "latin1"
   });
 
+  // Close the session since we don't need it anymore.
+  await vpn.close();
+
   if (response.status !== 200) {
     throw new Error("An error occurred while fetching the signatures page.");
   }

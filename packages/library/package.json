@@ -62,6 +62,6 @@
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
-    "fortigate-web-sslvpn": "^1.1.0"
+    "fortigate-web-sslvpn": "^1.2.0"
   }
 }
