@@ -6,6 +6,8 @@ import { createDump } from "../client/dump";
 import Semester from "../components/Semester";
 import { clearUserData } from "../client/clear";
 
+import MdiCardsHeart from '~icons/mdi/cards-heart'
+
 export default function Home() {
   const navigate = useNavigate();
   
@@ -90,9 +92,9 @@ export default function Home() {
         )}
       </Show>
 
-      <footer class="pt-6 text-center">
-        <p>Made with {"<3"} by <a class="underline font-medium" href="https://github.com/Vexcited">Vexcited</a></p>
-        <a class="text-sm" href="https://github.com/Vexcited/Signatures-IUT-Limoges/tree/main">
+      <footer class="pt-6 flex flex-col items-center justify-center text-center">
+        <p class="flex gap-1 items-center">Made with <MdiCardsHeart /> by <a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited">Vexcited</a></p>
+        <a class="text-sm opacity-60" href="https://github.com/Vexcited/Signatures-IUT-Limoges/tree/main">
           Deployed from latest main commit
         </a>
       </footer>
