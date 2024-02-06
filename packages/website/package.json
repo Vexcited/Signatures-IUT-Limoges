@@ -7,6 +7,7 @@
     "start": "vinxi start"
   },
   "dependencies": {
+    "@fontsource/poppins": "^5.0.8",
     "@solidjs/router": "^0.11.3",
     "@solidjs/start": "^0.5.1",
     "@unocss/reset": "^0.58.5",
@@ -19,8 +20,11 @@
     "node": ">=18"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.64",
     "@stylistic/eslint-plugin": "^1.5.4",
     "eslint": "^8.56.0",
-    "unocss": "^0.58.5"
+    "unocss": "^0.58.5",
+    "unocss-preset-primitives": "0.0.2-beta.0",
+    "unplugin-icons": "^0.18.5"
   }
 }

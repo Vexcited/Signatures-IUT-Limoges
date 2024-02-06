@@ -44,6 +44,9 @@ importers:
 
   packages/website:
     dependencies:
+      '@fontsource/poppins':
+        specifier: ^5.0.8
+        version: 5.0.8
       '@solidjs/router':
         specifier: ^0.11.3
         version: 0.11.3(solid-js@1.8.12)
@@ -66,6 +69,9 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1(preact@10.19.3)
     devDependencies:
+      '@iconify-json/mdi':
+        specifier: ^1.1.64
+        version: 1.1.64
       '@stylistic/eslint-plugin':
         specifier: ^1.5.4
         version: 1.5.4(eslint@8.56.0)(typescript@5.3.3)
@@ -75,6 +81,12 @@ importers:
       unocss:
         specifier: ^0.58.5
         version: 0.58.5(postcss@8.4.33)(vite@5.0.12)
+      unocss-preset-primitives:
+        specifier: 0.0.2-beta.0
+        version: 0.0.2-beta.0
+      unplugin-icons:
+        specifier: ^0.18.5
+        version: 0.18.5
 
 packages:
 
@@ -95,6 +107,12 @@ packages:
     dependencies:
       execa: 5.1.1
       find-up: 5.0.0
+    dev: true
+
+  /@antfu/install-pkg@0.3.1:
+    resolution: {integrity: sha512-A3zWY9VeTPnxlMiZtsGHw2lSd3ghwvL8s9RiGOtqvDxhhFfZ781ynsGBa/iUnDJ5zBrmTFQrJDud3TGgRISaxw==}
+    dependencies:
+      execa: 8.0.1
     dev: true
 
   /@antfu/utils@0.7.7:
@@ -849,6 +867,10 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
+  /@fontsource/poppins@5.0.8:
+    resolution: {integrity: sha512-P8owfYWluoUY5Nyzk4gT/L6LmLmseP6ezFWhj6VBUa5pRIdnCvNJpoQ6i/vhekjtJOfqX6nKlB+LCttoUl2GQQ==}
+    dev: false
+
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -871,6 +893,12 @@ packages:
 
   /@iarna/toml@2.2.5:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
+    dev: true
+
+  /@iconify-json/mdi@1.1.64:
+    resolution: {integrity: sha512-zGeo5TjhNFAY6FmSDBLAzDO811t77r6v/mDi7CAL9w5eXqKez6bIjk8R9AL/RHIeq44ALP4Ozr4lMqFTkHr7ug==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/types@2.0.0:
@@ -6925,6 +6953,12 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: false
 
+  /unocss-preset-primitives@0.0.2-beta.0:
+    resolution: {integrity: sha512-5Av0rhn04YKWA2k8bJ6ynz4NXGF4tyGL1TQUDaW+VQrnEvGiqfAKFngrfcRGth8COwy6+0JfDSGxH9lm8sj+ow==}
+    dependencies:
+      '@unocss/core': 0.58.5
+    dev: true
+
   /unocss@0.58.5(postcss@8.4.33)(vite@5.0.12):
     resolution: {integrity: sha512-0g4P6jLgRRNnhscxw7nQ9RHGrKJ1UPPiHPet+YT3TXUcmy4mTiYgo9+kGQf5bjyrzsELJ10cT6Qz2y6g9Tls4g==}
     engines: {node: '>=14'}
@@ -6964,6 +6998,37 @@ packages:
       - supports-color
     dev: true
 
+  /unplugin-icons@0.18.5:
+    resolution: {integrity: sha512-KVNAohXbZ7tVcG1C3p6QaC7wU9Qrj7etv4XvsMMJAxr5LccQZ+Iuv5LOIv/7GtqXaGN1BuFCqRO1ErsHEgEXdQ==}
+    peerDependencies:
+      '@svgr/core': '>=7.0.0'
+      '@svgx/core': ^1.0.1
+      '@vue/compiler-sfc': ^3.0.2 || ^2.7.0
+      vue-template-compiler: ^2.6.12
+      vue-template-es2015-compiler: ^1.9.0
+    peerDependenciesMeta:
+      '@svgr/core':
+        optional: true
+      '@svgx/core':
+        optional: true
+      '@vue/compiler-sfc':
+        optional: true
+      vue-template-compiler:
+        optional: true
+      vue-template-es2015-compiler:
+        optional: true
+    dependencies:
+      '@antfu/install-pkg': 0.3.1
+      '@antfu/utils': 0.7.7
+      '@iconify/utils': 2.1.22
+      debug: 4.3.4
+      kolorist: 1.8.0
+      local-pkg: 0.5.0
+      unplugin: 1.6.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /unplugin@1.6.0:
     resolution: {integrity: sha512-BfJEpWBu3aE/AyHx8VaNE/WgouoQxgH9baAiH82JjX8cqVyi3uJQstqwD5J+SZxIK326SZIhsSZlALXVBCknTQ==}
     dependencies:
@@ -6971,7 +7036,6 @@ packages:
       chokidar: 3.5.3
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1
-    dev: false
 
   /unstorage@1.10.1:
     resolution: {integrity: sha512-rWQvLRfZNBpF+x8D3/gda5nUCQL2PgXy2jNG4U7/Rc9BGEv9+CAJd0YyGCROUBKs9v49Hg8huw3aih5Bf5TAVw==}
@@ -7393,11 +7457,9 @@ packages:
   /webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
     engines: {node: '>=10.13.0'}
-    dev: false
 
   /webpack-virtual-modules@0.6.1:
     resolution: {integrity: sha512-poXpCylU7ExuvZK8z+On3kX+S8o/2dQ/SVYueKA0D4WEMXROXgY8Ez50/bQEUmvoSMMrWcrJqCHuhAbsiwg7Dg==}
-    dev: false
 
   /whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
