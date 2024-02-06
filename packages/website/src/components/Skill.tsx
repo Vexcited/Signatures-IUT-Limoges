@@ -31,7 +31,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
         </p>
       </a>
 
-      <div class="py-2 flex justify-center border border-[rgb(248,113,113)] border-t-0 rounded-b-md"
+      <div class="py-2 flex justify-center border border-[rgb(248,113,113)] border-t-0 rounded-b-md overflow-scroll"
         classList={{
           "flex-col gap-2": opened(),
           "gap-4": !opened(),
