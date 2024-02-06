@@ -2,15 +2,21 @@
 	"compilerOptions": {
 		"target": "ESNext",
 		"module": "ESNext",
-		"moduleResolution": "node",
+		"moduleResolution": "Node",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"jsx": "preserve",
 		"jsxImportSource": "solid-js",
-		"allowJs": true,
+		
+    "allowJs": true,
 		"strict": true,
 		"noEmit": true,
-		"types": ["vinxi/client"],
+		
+    "types": [
+      "vinxi/client",
+      "unplugin-icons/types/solid"
+    ],
+
 		"isolatedModules": true
 	},
   "include": ["src", "eslint.config.js", "vite.config.ts"]

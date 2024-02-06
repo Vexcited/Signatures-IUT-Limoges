@@ -1,4 +1,5 @@
 import { defineConfig } from "@solidjs/start/config";
+import icons from "unplugin-icons/vite";
 import unocss from "unocss/vite";
 
 export default defineConfig({
@@ -7,6 +8,12 @@ export default defineConfig({
     server: { preset: "vercel" }
   },
 
-  // @ts-ignore : Average typing error between Vite and UnoCSS.
-  plugins: [unocss()]
+  server: {
+    fs: {
+      allow: ["../.."]
+    }
+  },
+
+  // @ts-ignore : Average typing error with Vite
+  plugins: [unocss(), icons({ compiler: "solid" })]
 });
