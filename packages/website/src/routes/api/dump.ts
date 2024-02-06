@@ -14,8 +14,6 @@ export const GET: APIHandler = async ({ nativeEvent }) => {
   try {
     const buffer = await readSignaturesPageFromWebVPN(credentials.username, credentials.password) as unknown as Buffer;
     const html = buffer.toString("latin1");
-
-    console.log(html);
     const dump = dumpSignatureResponse(html);
 
     return new Response(JSON.stringify(dump), {
