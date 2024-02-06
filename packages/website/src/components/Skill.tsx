@@ -31,7 +31,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
         </p>
       </a>
 
-      <div class="py-2 flex justify-center border border-[rgb(248,113,113)] border-t-0 rounded-b-md"
+      <div class="py-2 flex justify-center border border-[rgb(248,113,113)] border-t-0 rounded-b-md overflow-scroll"
         classList={{
           "flex-col gap-2": opened(),
           "gap-4": !opened(),
@@ -48,7 +48,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
                 <h4>{module.id} : {module.name}</h4>
                 <div class="flex justify-between w-fit items-end gap-2">
                   <p class="font-medium">{module.average?.toFixed(2) ?? "N/A"}</p>
-                  <p class="text-[rgb(160,160,160)]">x{module.coefficient.toFixed(2)}</p>
+                  <p class="text-[rgb(160,160,160)] w-5ch text-right">x{module.coefficient.toFixed(2)}</p>
                 </div>
               </div>
             </Show>
