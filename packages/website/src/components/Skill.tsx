@@ -1,6 +1,9 @@
 import type { SignaturesSkillDump } from "signatures-iut-limoges";
 import { type Component, For, createSignal, Show } from "solid-js";
 
+import MdiChevronDown from '~icons/mdi/chevron-down'
+import MdiChevronRight from '~icons/mdi/chevron-right'
+
 const Skill: Component<SignaturesSkillDump> = (skill) => {
   const [opened, setOpened] = createSignal(true);
 
@@ -12,7 +15,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
         onClick={() => setOpened(prev => !prev)}
       >
         <p class="w-fit">
-          {opened() ? "▼" : "▶"}
+          {opened() ? <MdiChevronDown /> : <MdiChevronRight />}
         </p>
         <div class="flex flex-col">
           <h2 class="text-sm">
@@ -41,11 +44,11 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
                 <p class="">{module.average?.toFixed(2) ?? "N/A"}</p>
               }
             >
-              <div class="flex justify-between hover:bg-[rgb(248,113,113)]/10 transition py-1.5 px-4">
+              <div class="flex justify-between hover:bg-[rgb(248,113,113)]/10 transition py-1.5 px-4 gap-2">
                 <h4>{module.id} : {module.name}</h4>
-                <div class="flex justify-between w-[100px] items-end">
-                  <p>{module.average?.toFixed(2) ?? "N/A"}</p>
-                  <p>x{module.coefficient.toFixed(2)}</p>
+                <div class="flex justify-between w-fit items-end gap-2">
+                  <p class="font-medium">{module.average?.toFixed(2) ?? "N/A"}</p>
+                  <p class="text-[rgb(160,160,160)]">x{module.coefficient.toFixed(2)}</p>
                 </div>
               </div>
             </Show>
