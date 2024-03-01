@@ -1,6 +1,6 @@
 {
   "name": "signatures-iut-limoges",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Fetch your averages for each semester of the IUT (University Institute of Technology) of Limoges in a very simple way.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
