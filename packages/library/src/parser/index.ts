@@ -45,8 +45,11 @@ export const dumpSignatureResponse = (html: string): SignaturesDump => {
       element = element.prev();
       const globalAverage = parseFloat(element.text());
 
+      let skillID = fullNameParts.shift()!.trim();
+      if (skillID.toUpperCase() === "UE") skillID = fullNameParts.shift()!.trim();
+
       const skill: SignaturesSkillDump = {
-        id: fullNameParts.shift()!.trim(),
+        id: skillID,
         name: fullNameParts.join(" ").trim(),
 
         globalAverage: isNaN(globalAverage) ? null : globalAverage,
