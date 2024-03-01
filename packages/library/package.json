@@ -51,17 +51,17 @@
     }
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^1.5.4",
-    "@types/node": "^20.11.10",
-    "@typescript-eslint/parser": "^6.20.0",
-    "eslint": "^8.56.0",
-    "release-it": "^17.0.3",
-    "terser": "^5.27.0",
-    "tsup": "^8.0.1",
+    "@stylistic/eslint-plugin": "^1.6.3",
+    "@types/node": "^20.11.24",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
+    "release-it": "^17.1.1",
+    "terser": "^5.28.1",
+    "tsup": "^8.0.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
-    "fortigate-web-sslvpn": "^1.2.0"
+    "fortigate-web-sslvpn": "^2.1.0"
   }
 }
