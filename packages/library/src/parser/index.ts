@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import utf8 from "../utils/utf8";
 
 import type {
   SignaturesDump,
@@ -21,69 +22,77 @@ export const dumpSignatureResponse = (html: string): SignaturesDump => {
 
     // Parse the table header containing the semester name.
     const header = table.find($(`tr[data-tt-id="${tableID}"]`));
-    const [shortTableName, ...fullTableNameParts] = header.children().first().text().split(" ");
-    const fullTableName = fullTableNameParts.join(" ");
+    const semesterName = header.children().first().text().trim();
 
     const skills: SignaturesSkillDump[] = [];
+    const columns: string[] = [];
+
+    table.find($("thead th")).each(function () {
+      columns.push($(this).text().trim());
+    });
 
     table.find($("tr.tr_ue")).each(function () {
       const ue = $(this);
-      const children = ue.children();
+      let element = ue.children();
 
-      const skillGlobalData: string[] = [];
-      for (let iteration = children.first(), i = 0; i < 4; i++) {
-        skillGlobalData.push(iteration.text());
-        iteration = iteration.next();
-      }
+      const fullName = element.first().text();
+      const fullNameParts = fullName.split(" ");
 
-      const [, shortSkillName, ...fullSkillNameParts] = skillGlobalData[0].split(" ");
-      const modules: SignaturesModuleDump[] = [];
+      element = element.last();
+      const coefficient = parseFloat(element.text());
+      element = element.prev();
+      const absences = parseInt(element.text()) || 0;
+      element = element.prev();
+      const globalAverage = parseFloat(element.text());
+
+      const skill: SignaturesSkillDump = {
+        id: fullNameParts.shift()!.trim(),
+        name: fullNameParts.join(" ").trim(),
+
+        globalAverage: isNaN(globalAverage) ? null : globalAverage,
+        coefficient,
+        absences,
+
+        modules: []
+      };
 
       const tableID = ue.attr("data-tt-id");
       table.find($(`tr.tr_module[data-tt-parent-id="${tableID}"]`)).each(function () {
-        const module = $(this);
-        const children = module.children();
+        let element = $(this).children();
 
-        const moduleData: string[] = [];
-        for (let iteration = children.first(), i = 0; i < 4; i++) {
-          moduleData.push(iteration.text());
-          iteration = iteration.next();
-        }
+        const fullName = element.first().text();
+        const fullNameParts = fullName.split(" ");
 
-        const [shortModuleName, ...fullModuleNameParts] = moduleData[0].split(" ");
-        const average = parseFloat(moduleData[1]);
+        element = element.last();
+        const coefficient = parseFloat(element.text());
+        element = element.prev();
+        const absences = parseInt(element.text()) || 0;
+        element = element.prev();
+        const average = parseFloat(element.text());
 
-        modules.push({
-          id: shortModuleName,
-          name: fullModuleNameParts.join(" "),
+        const module: SignaturesModuleDump = {
+          id: fullNameParts.shift()!.trim(),
+          name: utf8(fullNameParts.join(" ").trim()),
           average: isNaN(average) ? null : average,
-          absences: parseInt(moduleData[2]) || 0,
-          coefficient: parseFloat(moduleData[3])
-        });
+          coefficient,
+          absences
+        };
+
+        skill.modules.push(module);
       });
 
-      const globalAverage = parseFloat(skillGlobalData[1]);
-
-      skills.push({
-        id: shortSkillName,
-        name: fullSkillNameParts.join(" "),
-        globalAverage: isNaN(globalAverage) ? null : globalAverage,
-        absences: parseInt(skillGlobalData[2]) || 0,
-        coefficient: parseFloat(skillGlobalData[3]),
-        modules
-      });
+      skills.push(skill);
     });
 
     semesters.push({
-      shortName: shortTableName,
-      name: fullTableName,
+      name: semesterName,
       skills
     });
   });
 
   return {
-    firstName,
-    familyName,
+    firstName: utf8(firstName),
+    familyName: utf8(familyName),
     className,
     semesters
   };

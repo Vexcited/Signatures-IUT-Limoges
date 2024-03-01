@@ -14,12 +14,7 @@ export interface SignaturesDump {
 }
 
 export interface SignaturesSemesterDump {
-  /** @example "S1" */
-  shortName: string
-  /**
-   * Long name for the semester.
-   * @example "Semestre 1"
-   */
+  /** @example "S1 Semestre 1" */
   name: string
 
   /** Contains the skills dump. */
@@ -29,7 +24,7 @@ export interface SignaturesSemesterDump {
 export interface SignaturesSkillDump {
   /**
    * Identifier of the skill.
-   * @example "1.1"
+   * @example "UE1.1"
    */
   id: string
   /**

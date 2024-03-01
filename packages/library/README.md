@@ -77,7 +77,6 @@ interface SignaturesDump {
 }
 
 interface SignaturesSemesterDump {
-  shortName: string
   name: string
   skills: Array<SignaturesSkillDump>
 }
