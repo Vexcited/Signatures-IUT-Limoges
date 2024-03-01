@@ -94,9 +94,9 @@ export default function Home() {
       </Show>
 
       <footer class="pt-6 flex flex-col items-center justify-center text-center">
-        <p class="flex gap-1 items-center">Made with <MdiCardsHeart /> by <a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited">Vexcited</a></p>
+        <p class="flex gap-1 items-center">Made with <MdiCardsHeart /> by <a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited" target="_blank">Vexcited</a> and <a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited/Signatures-IUT-Limoges/graphs/contributors" target="_blank">contributors</a></p>
         <a class="text-sm opacity-60" href="https://github.com/Vexcited/Signatures-IUT-Limoges/tree/main">
-          Deployed from latest main commit
+          Deployed from latest main commit.
         </a>
       </footer>
     </main>
