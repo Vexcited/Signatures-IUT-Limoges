@@ -7,15 +7,16 @@ import Semester from "../components/Semester";
 import { clearUserData } from "../client/clear";
 
 import MdiCardsHeart from '~icons/mdi/cards-heart'
+import { SafeStorage } from "../utils/safeStorage";
 
 export default function Home() {
   const navigate = useNavigate();
   
   /** `null` when not selected yet. */
-  const [_selectedSemester, _setSelectedSemester] = createSignal<string | null>(localStorage.getItem("selectedSemester"));
+  const [_selectedSemester, _setSelectedSemester] = createSignal(SafeStorage.getItem("selectedSemester"));
   /** Helper function that also stores in the localStorage to keep preference on reload. */
   const setSelectedSemester = (semester: string) => {
-    localStorage.setItem("selectedSemester", semester);
+    SafeStorage.setItem("selectedSemester", semester);
     _setSelectedSemester(semester);
   };
 
@@ -38,7 +39,7 @@ export default function Home() {
     }
 
     const data = await dump.json();
-    localStorage.setItem("dump", JSON.stringify(data));
+    SafeStorage.setItem("dump", JSON.stringify(data));
 
     setStore({ dump: data });
   })

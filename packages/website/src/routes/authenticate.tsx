@@ -2,6 +2,7 @@ import { type JSX, Show, createSignal, batch } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { createDump } from "../client/dump";
 import { setStore } from "../store";
+import { SafeStorage } from "../utils/safeStorage";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ export default function Login() {
     setLoading(false);
 
     setStore({ dump: data, dumpFromAuthentication: true });
-    localStorage.setItem("dump", JSON.stringify(data));
+    SafeStorage.setItem("dump", JSON.stringify(data));
     navigate("/");
   }
 

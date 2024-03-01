@@ -1,10 +1,8 @@
 import type { SignaturesDump } from "signatures-iut-limoges";
 import { createStore } from "solid-js/store";
+import { SafeStorage } from "../utils/safeStorage";
 
-let firstLoadDump: string | null = null;
-if (typeof window !== "undefined") {
-  firstLoadDump = localStorage.getItem("dump");
-}
+const firstLoadDump = SafeStorage.getItem("dump");
 
 export const [store, setStore] = createStore({
   authenticated: false,

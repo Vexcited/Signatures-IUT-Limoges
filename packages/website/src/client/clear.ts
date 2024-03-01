@@ -1,5 +1,7 @@
+import { SafeStorage } from "../utils/safeStorage";
+
 export const clearUserData = async (): Promise<void> => {
   await fetch("/api/clear-credentials", { method: "GET" });
-  localStorage.clear();
+  SafeStorage.clear();
   location.reload();
 };
