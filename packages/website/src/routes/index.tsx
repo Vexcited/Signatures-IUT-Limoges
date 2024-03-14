@@ -1,5 +1,5 @@
 import { onMount, Show, For, createSignal } from "solid-js";
-
+import { useNavigate } from "@solidjs/router";
 import { setStore, store } from "../store";
 import { createDump } from "../client/dump";
 import Semester from "../components/Semester";
@@ -10,6 +10,8 @@ import { SafeStorage } from "../utils/safeStorage";
 import toast from "solid-toast";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   /** `null` when not selected yet. */
   const [_selectedSemester, _setSelectedSemester] = createSignal(SafeStorage.getItem("selectedSemester"));
   /** Helper function that also stores in the localStorage to keep preference on reload. */
@@ -34,7 +36,8 @@ export default function Home() {
       const dump = await createDump();
   
       if (dump.status === 403) {
-        clearUserData(false);
+        await clearUserData(false);
+        navigate("/authenticate");
         return;
       }
       else if (dump.status !== 200) {
@@ -72,7 +75,10 @@ export default function Home() {
               </div>
 
               <button class="text-sm opacity-50 hover:opacity-100 px-3 py-1 bg-[rgb(240,240,240)] text-[rgb(20,20,20)] rounded-lg"
-                onClick={() => clearUserData(true)}
+                onClick={async () => {
+                  await clearUserData(true)
+                  navigate("/authenticate");
+                }}
               >
                 Effacer toutes les données
               </button>

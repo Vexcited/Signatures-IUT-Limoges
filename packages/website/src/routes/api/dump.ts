@@ -30,6 +30,7 @@ export const GET: APIHandler = async ({ nativeEvent }) => {
     });
   }
   catch (error) {
+    console.error(error);
     if (error instanceof WebVPNWrongCredentials) {
       return createLogoutResponse(nativeEvent);
     }
