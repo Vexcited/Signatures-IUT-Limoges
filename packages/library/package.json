@@ -14,7 +14,7 @@
   "scripts": {
     "build": "tsup ./src/index.ts --dts --minify terser --clean --format cjs,esm --sourcemap",
     "release": "release-it",
-    "lint": "eslint ."
+    "lint": "tsc && eslint ."
   },
   "files": [
     "dist"
@@ -51,17 +51,17 @@
     }
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^1.6.3",
-    "@types/node": "^20.11.24",
-    "@typescript-eslint/parser": "^6.21.0",
+    "@stylistic/eslint-plugin": "^1.7.0",
+    "@types/node": "^20.11.27",
+    "@typescript-eslint/parser": "^7.2.0",
     "eslint": "^8.57.0",
     "release-it": "^17.1.1",
-    "terser": "^5.28.1",
+    "terser": "^5.29.2",
     "tsup": "^8.0.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
-    "fortigate-web-sslvpn": "^2.1.0"
+    "fortigate-web-sslvpn": "^2.2.0"
   }
 }
