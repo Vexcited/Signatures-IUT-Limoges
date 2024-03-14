@@ -1,5 +1,4 @@
 import { onMount, Show, For, createSignal } from "solid-js";
-import { useNavigate } from "@solidjs/router";
 
 import { setStore, store } from "../store";
 import { createDump } from "../client/dump";
@@ -8,10 +7,9 @@ import { clearUserData } from "../client/clear";
 
 import MdiCardsHeart from '~icons/mdi/cards-heart'
 import { SafeStorage } from "../utils/safeStorage";
+import toast from "solid-toast";
 
 export default function Home() {
-  const navigate = useNavigate();
-  
   /** `null` when not selected yet. */
   const [_selectedSemester, _setSelectedSemester] = createSignal(SafeStorage.getItem("selectedSemester"));
   /** Helper function that also stores in the localStorage to keep preference on reload. */
@@ -31,17 +29,29 @@ export default function Home() {
 
   onMount(async () => {
     if (store.dumpFromAuthentication) return;
-    const dump = await createDump();
 
-    if (dump.status !== 200) {
-      navigate("/authenticate");
-      return;
+    try {
+      const dump = await createDump();
+  
+      if (dump.status === 403) {
+        clearUserData(false);
+        return;
+      }
+      else if (dump.status !== 200) {
+        const message = await dump.text();
+        toast.error(message);
+        return;
+      }
+  
+      const data = await dump.json();
+      SafeStorage.setItem("dump", JSON.stringify(data));
+  
+      setStore({ dump: data, authenticated: true });
+      toast.success("Données mises à jour avec succès !");
     }
-
-    const data = await dump.json();
-    SafeStorage.setItem("dump", JSON.stringify(data));
-
-    setStore({ dump: data });
+    catch {
+      toast("Vous êtes hors-ligne: les données peuvent être obsolètes.");
+    }
   })
 
   return (
@@ -62,7 +72,7 @@ export default function Home() {
               </div>
 
               <button class="text-sm opacity-50 hover:opacity-100 px-3 py-1 bg-[rgb(240,240,240)] text-[rgb(20,20,20)] rounded-lg"
-                onClick={clearUserData}
+                onClick={() => clearUserData(true)}
               >
                 Effacer toutes les données
               </button>

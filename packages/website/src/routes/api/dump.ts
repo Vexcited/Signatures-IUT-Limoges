@@ -3,7 +3,13 @@ import { getCookie } from "vinxi/http";
 
 import { decryptCredentials } from "../../server/credentials";
 import { createLogoutResponse } from "../../server/logout";
-import { dumpSignatureResponse, readSignaturesPageFromWebVPN } from "signatures-iut-limoges";
+
+import {
+  dumpSignatureResponse,
+  readSignaturesPageFromWebVPN,
+  WebVPNWrongCredentials,
+  WebVPNRateLimited
+} from "signatures-iut-limoges";
 
 export const GET: APIHandler = async ({ nativeEvent }) => {
   const cookie = getCookie(nativeEvent, "credentials");
@@ -23,7 +29,14 @@ export const GET: APIHandler = async ({ nativeEvent }) => {
       }
     });
   }
-  catch {
-    return createLogoutResponse(nativeEvent);
+  catch (error) {
+    if (error instanceof WebVPNWrongCredentials) {
+      return createLogoutResponse(nativeEvent);
+    }
+    else if (error instanceof WebVPNRateLimited) {
+      return new Response("Le serveur WebVPN a bloqué l'accès à cause de trop de tentatives.", { status: 429 });
+    }
+
+    return new Response("Une erreur s'est produite côté serveur, réessayez plus tard.", { status: 500 });
   }
 };
