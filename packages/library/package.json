@@ -58,6 +58,7 @@
     "release-it": "^17.1.1",
     "terser": "^5.29.2",
     "tsup": "^8.0.2",
+    "tsx": "^4.10.2",
     "typescript": "^5.4.2"
   },
   "dependencies": {

@@ -23,8 +23,8 @@ export const readSignaturesPageFromWebVPN = async (username: string, password: s
   return response.data;
 };
 
-export const readSignaturesPage = async (username: string, password: string) => {
-  const response = await fetch(SIGNATURES_URL, {
+export const readSignaturesPage = async (username: string, password: string, url = SIGNATURES_URL) => {
+  const response = await fetch(url, {
     method: "POST",
     headers: { ...SIGNATURES_HEADERS },
     body: createLoginBody(username, password)
