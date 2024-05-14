@@ -8,5 +8,7 @@ export type {
   SignaturesSkillDump
 } from "./parser/types";
 
+export { WrongCredentials } from "./utils/error";
+
 // Re-export error classes when using the web VPN.
 export { WrongCredentials as WebVPNWrongCredentials, RateLimited as WebVPNRateLimited } from "fortigate-web-sslvpn";

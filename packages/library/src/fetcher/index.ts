@@ -1,5 +1,6 @@
 import { initWebSSLVPNSession } from "fortigate-web-sslvpn";
 import { SIGNATURES_HEADERS, SIGNATURES_URL, U_VPN_ORIGIN } from "../utils/constants";
+import { WrongCredentials } from "../utils/error";
 
 const createLoginBody = (username: string, password: string) => `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
 
@@ -32,5 +33,8 @@ export const readSignaturesPage = async (username: string, password: string, url
 
   const buffer = await response.arrayBuffer();
   const decoder = new TextDecoder("latin1");
-  return decoder.decode(buffer);
+  const body = decoder.decode(buffer);
+
+  if (body.includes("<form")) throw new WrongCredentials();
+  return body;
 };
