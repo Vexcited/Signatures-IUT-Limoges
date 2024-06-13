@@ -1,5 +1,6 @@
 import type { SignaturesSkillDump } from "signatures-iut-limoges";
 import { type Component, For, createSignal, Show } from "solid-js";
+import { onMount, createEffect } from "solid-js";
 
 import MdiChevronDown from '~icons/mdi/chevron-down'
 import MdiChevronRight from '~icons/mdi/chevron-right'
@@ -8,7 +9,16 @@ import { averageChangements } from "../utils/averageChangements";
 const Skill: Component<SignaturesSkillDump> = (skill) => {
   const [opened, setOpened] = createSignal(true);
   const [moduleAverages, setModuleAverages] = createSignal(skill.modules.map(module => module.average));
-  const [skillGlobalAverage, setGlobalAverage] = createSignal(skill.globalAverage);
+
+  createEffect(() => {
+    if (!averageChangements()) {
+      setModuleAverages(skill.modules.map(module => module.average));
+    }
+  });
+
+  onMount(() => {
+    setModuleAverages(skill.modules.map(module => module.average));
+  });
 
   const updateModuleAverage = (index: number, value: string | null) => {
     const newAverages = [...moduleAverages()];
@@ -22,7 +32,6 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
       newAverages[index] = isNaN(parsedValue) ? null : parsedValue;
     }
     setModuleAverages(newAverages);
-    console.log(newAverages);
   };
 
   const recalculateGlobalAverage = () => {
