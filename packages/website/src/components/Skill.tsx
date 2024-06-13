@@ -3,9 +3,23 @@ import { type Component, For, createSignal, Show } from "solid-js";
 
 import MdiChevronDown from '~icons/mdi/chevron-down'
 import MdiChevronRight from '~icons/mdi/chevron-right'
+import { averageChangements } from "../utils/averageChangements";
 
 const Skill: Component<SignaturesSkillDump> = (skill) => {
   const [opened, setOpened] = createSignal(true);
+  const [moduleAverages, setModuleAverages] = createSignal(skill.modules.map(module => module.average));
+
+  const updateModuleAverage = (index: number, value: string | null) => {
+    const newAverages = [...moduleAverages()];
+    if (value === null || value.trim() === "") {
+      newAverages[index] = null;
+    } else {
+      const parsedValue = parseFloat(value);
+      newAverages[index] = isNaN(parsedValue) ? null : parsedValue;
+    }
+    setModuleAverages(newAverages);
+    console.log(newAverages);
+  };
 
   return (
     <div class="relative w-full">
@@ -38,7 +52,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
         }}
       >
         <For each={skill.modules}>
-          {module => (
+          {(module, i) => (
             <Show when={opened()}
               fallback={
                 <p class="w-full text-center">{module.average?.toFixed(2) ?? "N/A"}</p>
@@ -50,7 +64,17 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
                 </h4>
 
                 <div class="shrink-0 flex flex-col w-fit justify-end items-center">
-                  <p class="font-medium w-full text-right">{module.average?.toFixed(2) ?? "N/A"}</p>
+                  {averageChangements() ? (
+                    <p class="font-medium w-full text-right">{module.average?.toFixed(2) ?? 
+                      <input
+                        type="text"
+                        class="text-right border border-white rounded-full bg-black text-white text-center px-2 py-1 w-15"
+                        onInput={(e) => updateModuleAverage(i(), e.currentTarget.value)}
+                      />}
+                    </p>
+                  ) : ( 
+                    <p class="font-medium w-full text-right">{module.average?.toFixed(2) ?? "N/A"}</p>
+                  )} 
                   <p class="text-[rgb(160,160,160)] text-sm w-full text-right">x{module.coefficient.toFixed(2)}</p>
                 </div>
               </div>
