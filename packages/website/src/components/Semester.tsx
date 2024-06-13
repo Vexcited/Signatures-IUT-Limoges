@@ -5,7 +5,7 @@ import Skill from "./Skill";
 
 const Semester: Component<SignaturesSemesterDump> = (semester) => {
   createEffect(on(() => semester.skills, (skills) => {
-    for (const skill of semester.skills) {
+    for (const skill of skills) {
       for (const module of skill.modules) {
         if (typeof customModulesAverage[module.id] !== "undefined") continue;
         setCustomModulesAverage(module.id, module.average);
