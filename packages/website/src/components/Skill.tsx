@@ -8,17 +8,36 @@ import { averageChangements } from "../utils/averageChangements";
 const Skill: Component<SignaturesSkillDump> = (skill) => {
   const [opened, setOpened] = createSignal(true);
   const [moduleAverages, setModuleAverages] = createSignal(skill.modules.map(module => module.average));
+  const [skillGlobalAverage, setGlobalAverage] = createSignal(skill.globalAverage);
 
   const updateModuleAverage = (index: number, value: string | null) => {
     const newAverages = [...moduleAverages()];
     if (value === null || value.trim() === "") {
       newAverages[index] = null;
     } else {
-      const parsedValue = parseFloat(value);
+      let parsedValue = parseFloat(value);
+      if (parsedValue > 20) {
+        parsedValue = 20;
+      }
       newAverages[index] = isNaN(parsedValue) ? null : parsedValue;
     }
     setModuleAverages(newAverages);
     console.log(newAverages);
+  };
+
+  const recalculateGlobalAverage = () => {
+    const averages = moduleAverages();
+  
+    let sum = 0;
+    let totalCoefficients = 0;
+    averages.forEach((avg, i) => {
+      if (avg !== null) {
+        sum += avg * skill.modules[i].coefficient;
+        totalCoefficients += skill.modules[i].coefficient;
+      }
+    });
+    if (totalCoefficients === 0) return "N/A";
+    return (sum / totalCoefficients).toFixed(2);
   };
 
   return (
@@ -41,7 +60,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
         </div>
 
         <p class="font-medium text-xl ml-auto">
-          {skill.globalAverage ?? "N/A"}
+          {averageChangements() ? (recalculateGlobalAverage()) : (skill.globalAverage ?? "N/A")}
         </p>
       </a>
 
