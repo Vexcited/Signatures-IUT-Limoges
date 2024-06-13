@@ -8,7 +8,6 @@ import { clearUserData } from "../client/clear";
 import MdiCardsHeart from '~icons/mdi/cards-heart'
 import { SafeStorage } from "../utils/safeStorage";
 import toast from "solid-toast";
-import { averageChangements, authorizeAverageChangements } from "../utils/averageChangements";
 
 export default function Home() {
   /** `null` when not selected yet. */
@@ -82,9 +81,9 @@ export default function Home() {
                   Effacer toutes les données
                 </button>
                 <button class="text-sm opacity-50 hover:opacity-100 px-3 py-1 bg-[rgb(240,240,240)] text-[rgb(20,20,20)] rounded-lg"
-                  onClick={() => { authorizeAverageChangements(!averageChangements());}}
+                  onClick={() => setStore("useCustomAveragesMode", prev => !prev)}
                 >
-                  {averageChangements() ? "Mode visualisation de notes" : "Mode simulation de notes"}
+                  {store.useCustomAveragesMode ? "Mode visualisation de notes" : "Mode simulation de notes"}
                 </button>
               </header>
 

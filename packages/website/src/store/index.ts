@@ -7,5 +7,6 @@ const firstLoadDump = SafeStorage.getItem("dump");
 export const [store, setStore] = createStore({
   authenticated: false,
   dump: firstLoadDump ? JSON.parse(firstLoadDump) as SignaturesDump : null,
-  dumpFromAuthentication: false
+  dumpFromAuthentication: false,
+  useCustomAveragesMode: false
 });

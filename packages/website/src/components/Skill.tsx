@@ -1,53 +1,35 @@
 import type { SignaturesSkillDump } from "signatures-iut-limoges";
-import { type Component, For, createSignal, Show } from "solid-js";
-import { onMount, createEffect } from "solid-js";
+import { type Component, For, createSignal, Show, createMemo } from "solid-js";
 
 import MdiChevronDown from '~icons/mdi/chevron-down'
 import MdiChevronRight from '~icons/mdi/chevron-right'
-import { averageChangements } from "../utils/averageChangements";
+import { customModulesAverage, setCustomModulesAverage } from "../store/modules";
+import { store } from "../store";
 
 const Skill: Component<SignaturesSkillDump> = (skill) => {
   const [opened, setOpened] = createSignal(true);
-  const [moduleAverages, setModuleAverages] = createSignal(skill.modules.map(module => module.average));
 
-  createEffect(() => {
-    if (!averageChangements()) {
-      setModuleAverages(skill.modules.map(module => module.average));
-    }
-  });
-
-  onMount(() => {
-    setModuleAverages(skill.modules.map(module => module.average));
-  });
-
-  const updateModuleAverage = (index: number, value: string | null) => {
-    const newAverages = [...moduleAverages()];
-    if (value === null || value.trim() === "") {
-      newAverages[index] = null;
-    } else {
-      let parsedValue = parseFloat(value);
-      if (parsedValue > 20) {
-        parsedValue = 20;
-      }
-      newAverages[index] = isNaN(parsedValue) ? null : parsedValue;
-    }
-    setModuleAverages(newAverages);
-  };
-
-  const recalculateGlobalAverage = () => {
-    const averages = moduleAverages();
+  /**
+   * Average calculated using `customModulesAverage`
+   * instead of the `skill.globalAverage`
+   */
+  const customGlobalAverage = createMemo(() => {
+    const modules = skill.modules.map(module => ({ id: module.id, coefficient: module.coefficient }));
   
     let sum = 0;
     let totalCoefficients = 0;
-    averages.forEach((avg, i) => {
-      if (avg !== null) {
-        sum += avg * skill.modules[i].coefficient;
-        totalCoefficients += skill.modules[i].coefficient;
+
+    for (const module of modules) {
+      const customAverage = customModulesAverage[module.id];
+      if (customAverage !== null) {
+        sum += customAverage * module.coefficient;
+        totalCoefficients += module.coefficient;
       }
-    });
+    }
+
     if (totalCoefficients === 0) return "N/A";
     return (sum / totalCoefficients).toFixed(2);
-  };
+  });
 
   return (
     <div class="relative w-full">
@@ -69,7 +51,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
         </div>
 
         <p class="font-medium text-xl ml-auto">
-          {averageChangements() ? (recalculateGlobalAverage()) : (skill.globalAverage ?? "N/A")}
+          {store.useCustomAveragesMode ? (customGlobalAverage()) : (skill.globalAverage ?? "N/A")}
         </p>
       </a>
 
@@ -92,17 +74,23 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
                 </h4>
 
                 <div class="shrink-0 flex flex-col w-fit justify-end items-center">
-                  {averageChangements() ? (
-                    <p class="font-medium w-full text-right">{module.average?.toFixed(2) ?? 
-                      <input
-                        type="text"
-                        class="text-right border border-white rounded-full bg-black text-white text-center px-2 py-1 w-15"
-                        onInput={(e) => updateModuleAverage(i(), e.currentTarget.value)}
-                      />}
-                    </p>
-                  ) : ( 
+                  <Show when={store.useCustomAveragesMode} fallback={
                     <p class="font-medium w-full text-right">{module.average?.toFixed(2) ?? "N/A"}</p>
-                  )} 
+                  }>
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      class="text-right border border-white rounded-full bg-black text-white text-center px-2 py-.5 w-15"
+                      value={customModulesAverage[module.id] ?? ""}
+                      onInput={(event) => {
+                        let valueAsNumber = parseFloat(event.currentTarget.value.trim());
+                        if (valueAsNumber > 20) valueAsNumber = 20;
+
+                        setCustomModulesAverage(module.id, Number.isNaN(valueAsNumber) ? null : valueAsNumber);
+                      }}
+                    />
+                  </Show>
+
                   <p class="text-[rgb(160,160,160)] text-sm w-full text-right">x{module.coefficient.toFixed(2)}</p>
                 </div>
               </div>
