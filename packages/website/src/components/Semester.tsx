@@ -7,6 +7,7 @@ const Semester: Component<SignaturesSemesterDump> = (semester) => {
   createEffect(on(() => semester.skills, (skills) => {
     for (const skill of skills) {
       for (const module of skill.modules) {
+        if (module.average !== null) continue; // we only want to set the custom average if the module has no average
         if (typeof customModulesAverage[module.id] !== "undefined") continue;
         setCustomModulesAverage(module.id, module.average);
       }

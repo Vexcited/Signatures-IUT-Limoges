@@ -14,15 +14,20 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
    * instead of the `skill.globalAverage`
    */
   const customGlobalAverage = createMemo(() => {
-    const modules = skill.modules.map(module => ({ id: module.id, coefficient: module.coefficient }));
+    const modules = skill.modules.map(module => ({
+      id: module.id,
+      coefficient: module.coefficient,
+      realAverage: module.average
+    }));
   
     let sum = 0;
     let totalCoefficients = 0;
 
     for (const module of modules) {
-      const customAverage = customModulesAverage[module.id];
-      if (customAverage !== null) {
-        sum += customAverage * module.coefficient;
+      const average = customModulesAverage[module.id] ?? module.realAverage;
+
+      if (average !== null) {
+        sum += average * module.coefficient;
         totalCoefficients += module.coefficient;
       }
     }
@@ -74,7 +79,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
                 </h4>
 
                 <div class="shrink-0 flex flex-col w-fit justify-end items-center">
-                  <Show when={store.useCustomAveragesMode} fallback={
+                  <Show when={store.useCustomAveragesMode && module.average === null} fallback={
                     <p class="font-medium w-full text-right">{module.average?.toFixed(2) ?? "N/A"}</p>
                   }>
                     <input
