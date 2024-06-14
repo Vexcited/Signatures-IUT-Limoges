@@ -7,6 +7,9 @@ import { customModulesAverage, setCustomModulesAverage } from "../store/modules"
 import { store } from "../store";
 
 const Skill: Component<SignaturesSkillDump> = (skill) => {
+
+  const renderGrade = (value?: number | null) => value?.toFixed(2) ?? "N/A";
+
   const [opened, setOpened] = createSignal(true);
 
   /**
@@ -70,7 +73,8 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
           {(module, i) => (
             <Show when={opened()}
               fallback={
-                <p class="w-full text-center">{module.average?.toFixed(2) ?? "N/A"}</p>
+                <p class="w-full text-center">
+                  {store.useCustomAveragesMode ? (customModulesAverage[module.id] ?? renderGrade(module.average)) : (renderGrade(module.average))}</p>
               }
             >
               <div class="w-full flex justify-between hover:bg-[rgb(248,113,113)]/10 transition py-1.5 px-4 gap-2">
@@ -80,7 +84,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
 
                 <div class="shrink-0 flex flex-col w-fit justify-end items-center">
                   <Show when={store.useCustomAveragesMode && module.average === null} fallback={
-                    <p class="font-medium w-full text-right">{module.average?.toFixed(2) ?? "N/A"}</p>
+                    <p class="font-medium w-full text-right">{renderGrade(module.average)}</p>
                   }>
                     <input
                       type="text"
