@@ -6,9 +6,9 @@ import MdiChevronRight from '~icons/mdi/chevron-right'
 import { customModulesAverage, setCustomModulesAverage } from "../store/modules";
 import { store } from "../store";
 
-const Skill: Component<SignaturesSkillDump> = (skill) => {
+const renderGrade = (value?: number | null) => value?.toFixed(2) ?? "N/A";
 
-  const renderGrade = (value?: number | null) => value?.toFixed(2) ?? "N/A";
+const Skill: Component<SignaturesSkillDump> = (skill) => {
 
   const [opened, setOpened] = createSignal(true);
 
