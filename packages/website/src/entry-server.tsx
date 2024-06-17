@@ -10,8 +10,8 @@ export default createHandler(() => (
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
           <meta name="color-scheme" content="dark light" />
-          <meta name="msapplication-TileColor" content="#f2f4f4" />
-          <meta name="theme-color" content="#f2f4f4" />
+          <meta name="msapplication-TileColor" content="#FFFFFF" />
+          <meta name="theme-color" content="#FFFFFF" />
 
           <title>Signatures - IUT de Limoges</title>
           <meta name="title" content="Signatures - IUT de Limoges" />
