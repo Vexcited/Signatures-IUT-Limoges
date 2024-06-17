@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.0.8",
+    "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.12.4",
     "@solidjs/start": "^0.5.10",
+    "@thednp/solid-color-picker": "^0.0.7",
     "@unocss/reset": "^0.58.5",
     "cryptr": "^6.3.0",
     "signatures-iut-limoges": "workspace:*",

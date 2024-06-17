@@ -50,12 +50,18 @@ importers:
       '@fontsource/poppins':
         specifier: ^5.0.8
         version: 5.0.8
+      '@solidjs/meta':
+        specifier: ^0.29.4
+        version: 0.29.4(solid-js@1.8.15)
       '@solidjs/router':
         specifier: ^0.12.4
         version: 0.12.4(solid-js@1.8.15)
       '@solidjs/start':
         specifier: ^0.5.10
         version: 0.5.10(rollup@4.12.0)(solid-js@1.8.15)(vinxi@0.2.1(@types/node@20.11.27)(preact@10.19.6)(rollup@4.12.0)(terser@5.29.2))(vite@4.5.0(@types/node@20.11.27)(terser@5.29.2))
+      '@thednp/solid-color-picker':
+        specifier: ^0.0.7
+        version: 0.0.7(solid-js@1.8.15)
       '@unocss/reset':
         specifier: ^0.58.5
         version: 0.58.5
@@ -1224,6 +1230,11 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
+  '@solidjs/meta@0.29.4':
+    resolution: {integrity: sha512-zdIWBGpR9zGx1p1bzIPqF5Gs+Ks/BH8R6fWhmUa/dcK1L2rUC8BAcZJzNRYBQv74kScf1TSOs0EY//Vd/I0V8g==}
+    peerDependencies:
+      solid-js: '>=1.8.4'
+
   '@solidjs/router@0.12.4':
     resolution: {integrity: sha512-2S5QWYmpWSIWn5ei85eoStEMmECERX2BiBkEvmqYDrgX79I8D95YaWVdHbcFGOxISPTY4TP7RxjRiofs/AIFJQ==}
     peerDependencies:
@@ -1298,6 +1309,22 @@ packages:
   '@szmarczak/http-timer@5.0.1':
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
+
+  '@thednp/color-picker@2.0.0-alpha10':
+    resolution: {integrity: sha512-5NhCpFaIafLXO1z0meeDug02jjaMu+ndwZTKDQqwwagEsTK4uIfzjZ/SndimnADNRDtl6NDX8MmRvFho6GZYuQ==}
+
+  '@thednp/color@1.0.8':
+    resolution: {integrity: sha512-jQBkcRtE8odj90mLZ3NsV69186fQcC0P2QSa2xyZBvXswJCiAzp2necdWU+nT6vjIU09o/dYB9Mv3rsyN/ysEA==}
+
+  '@thednp/shorty@2.0.0-alpha22':
+    resolution: {integrity: sha512-BpXSRRGKJyZcP1OLBM2G7i+zcWGEA+6oHPwHs8GdaHykJDroDl+UaDEQX+PGiIxItosvY4hmF8zU2vG2JQ/qkQ==}
+    engines: {node: '>=16', pnpm: '>=8.6.0'}
+
+  '@thednp/solid-color-picker@0.0.7':
+    resolution: {integrity: sha512-iKHKhuBSbAu95yplVk6Z7ZyM7CW2+l+617K+Z0qrvNotm+/gM7GuRKxFfs/oBGxy9OqLfSChI2tywUq197LHHg==}
+    engines: {node: '>=16', pnpm: '>=8.6.0'}
+    peerDependencies:
+      solid-js: ^1.6.0
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -5570,6 +5597,10 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
+  '@solidjs/meta@0.29.4(solid-js@1.8.15)':
+    dependencies:
+      solid-js: 1.8.15
+
   '@solidjs/router@0.12.4(solid-js@1.8.15)':
     dependencies:
       solid-js: 1.8.15
@@ -5696,6 +5727,22 @@ snapshots:
   '@szmarczak/http-timer@5.0.1':
     dependencies:
       defer-to-connect: 2.0.1
+
+  '@thednp/color-picker@2.0.0-alpha10':
+    dependencies:
+      '@thednp/color': 1.0.8
+      '@thednp/shorty': 2.0.0-alpha22
+
+  '@thednp/color@1.0.8': {}
+
+  '@thednp/shorty@2.0.0-alpha22': {}
+
+  '@thednp/solid-color-picker@0.0.7(solid-js@1.8.15)':
+    dependencies:
+      '@thednp/color': 1.0.8
+      '@thednp/color-picker': 2.0.0-alpha10
+      '@thednp/shorty': 2.0.0-alpha22
+      solid-js: 1.8.15
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
