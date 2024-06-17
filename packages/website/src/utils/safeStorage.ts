@@ -1,5 +1,5 @@
 export class SafeStorage {
-  private static readWindow (): Window | null {
+  private static _readWindow (): Window | null {
     if (typeof window === "undefined") {
       return null;
     }
@@ -7,8 +7,8 @@ export class SafeStorage {
     return window;
   }
 
-  private static readLocalStorage (): typeof localStorage | null {
-    const window = SafeStorage.readWindow();
+  private static _readLocalStorage (): Storage | null {
+    const window = SafeStorage._readWindow();
     if (window && "localStorage" in window) {
       return window.localStorage;
     }
@@ -17,16 +17,18 @@ export class SafeStorage {
   }
 
   public static getItem(key: string): string | null {
-    return SafeStorage.readLocalStorage()?.getItem(key) ?? null;
+    return SafeStorage._readLocalStorage()?.getItem(key) ?? null;
   }
 
   public static setItem(key: string, value: string): void {
-    if (typeof localStorage === "undefined") return;
-    SafeStorage.readLocalStorage()?.setItem(key, value);
+    SafeStorage._readLocalStorage()?.setItem(key, value);
+  }
+
+  public static removeItem(key: string): void {
+    SafeStorage._readLocalStorage()?.removeItem(key);
   }
 
   public static clear(): void {
-    if (typeof localStorage === "undefined") return;
-    SafeStorage.readLocalStorage()?.clear();
+    SafeStorage._readLocalStorage()?.clear();
   }
 }
