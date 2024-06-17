@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
-    "build": "vinxi build",
+    "build": "vinxi build && cp .vercel/output/static/_build/sw.js* .vercel/output/static && cp .vercel/output/static/_build/workbox*.js* .vercel/output/static && cp .vercel/output/static/_build/manifest.webmanifest .vercel/output/static",
     "start": "vinxi start"
   },
   "dependencies": {
