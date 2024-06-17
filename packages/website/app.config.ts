@@ -30,6 +30,7 @@ export default defineConfig({
 
         workbox: {
           sourcemap: true,
+          cleanupOutdatedCaches: true,
           globPatterns: [
             "**/*.{js,css,html,svg,png,woff,woff2}"
           ],
@@ -37,7 +38,8 @@ export default defineConfig({
             /^\/api.*/
           ],
           additionalManifestEntries: [
-            { url: "index.html", revision: null }
+            { url: "favicon.ico", revision: null },
+            { url: "index.html", revision: "REV_INDEX_HTML_TO_CHANGE" }
           ]
         },
 
