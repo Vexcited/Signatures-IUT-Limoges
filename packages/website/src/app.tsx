@@ -4,7 +4,7 @@ import '@fontsource/poppins/500.css';
 import "virtual:uno.css";
 
 import { Router } from "@solidjs/router";
-import { FileRoutes } from "@solidjs/start";
+import { FileRoutes } from "@solidjs/start/router";
 import { Suspense, createEffect } from "solid-js";
 import { Toaster } from "solid-toast";
 import { preferences } from "./store/preferences";

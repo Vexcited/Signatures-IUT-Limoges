@@ -3,22 +3,22 @@
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
-    "build": "vinxi build && cp ./.data/config.json ./.vercel/output/config.json && rm ./.vercel/output/static/index*",
+    "build": "vinxi build",
     "start": "vinxi start"
   },
   "dependencies": {
     "@fontsource/poppins": "^5.0.8",
     "@kobalte/core": "^0.13.3",
     "@solidjs/meta": "^0.29.4",
-    "@solidjs/router": "^0.12.4",
-    "@solidjs/start": "^0.5.10",
+    "@solidjs/router": "^0.13.5",
+    "@solidjs/start": "^1.0.1",
     "@thednp/solid-color-picker": "^0.0.7",
     "@unocss/reset": "^0.58.5",
     "cryptr": "^6.3.0",
     "signatures-iut-limoges": "workspace:*",
     "solid-js": "^1.8.15",
     "solid-toast": "^0.5.0",
-    "vinxi": "^0.2.1"
+    "vinxi": "^0.3.11"
   },
   "engines": {
     "node": ">=18"
