@@ -7,7 +7,7 @@ export default defineConfig({
 
   theme: {
     colors: {
-      red: "rgba(var(--custom-color), %alpha)"
+      custom: "rgba(var(--custom-color), %alpha)"
     },
 
     // breakpoints: {

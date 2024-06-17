@@ -9,6 +9,7 @@ import MdiCardsHeart from '~icons/mdi/cards-heart'
 import { SafeStorage } from "../utils/safeStorage";
 import toast from "solid-toast";
 import { preferences, setSelectedSemester } from "../store/preferences";
+import UIColorPicker from "~/components/UIColorPicker";
 
 export default function Home() {
   const selectedSemesterDump = () => {
@@ -66,6 +67,7 @@ export default function Home() {
                   <p class="text-center">
                     Étudiant en {dump().className}
                   </p>
+                  <UIColorPicker />
                 </div>
 
                 <button class="text-sm opacity-50 hover:opacity-100 px-3 py-1 bg-[rgb(240,240,240)] text-[rgb(20,20,20)] rounded-lg"
@@ -84,10 +86,10 @@ export default function Home() {
                 <For each={dump().semesters}>
                   {semester => (
                       <button
-                        class="w-fit px-4 py-2 rounded-md border border-[rgb(248,113,113)]"
+                        class="w-fit px-4 py-2 rounded-md border border-custom"
                         onClick={() => setSelectedSemester(semester.name)}
                         classList={{
-                          "bg-[rgb(248,113,113)] text-white": semester.name === preferences.selectedSemester,
+                          "bg-custom text-white": semester.name === preferences.selectedSemester,
                         }}
                       >
                         {semester.name}
@@ -110,7 +112,7 @@ export default function Home() {
             <span class="flex items-center gap-1">Made with <MdiCardsHeart /> by</span>
             <span class="flex items-center gap-1"><a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited" target="_blank">Vexcited</a> and <a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited/Signatures-IUT-Limoges/graphs/contributors" target="_blank">contributors</a></span>
           </p>
-          <a href={`https://github.com/Vexcited/Signatures-IUT-Limoges/tree/${__APP_COMMIT_SHA__=== "dev" ? "main" : __APP_COMMIT_SHA__}`} class="text-xs pt-1 text-red/80 hover:(underline text-red)">
+          <a href={`https://github.com/Vexcited/Signatures-IUT-Limoges/tree/${__APP_COMMIT_SHA__=== "dev" ? "main" : __APP_COMMIT_SHA__}`} class="text-xs pt-1 text-custom/80 hover:(underline text-custom)">
             {__APP_COMMIT_SHA__ === "dev" ? "development version" :__APP_COMMIT_SHA__}
           </a>
         </footer>

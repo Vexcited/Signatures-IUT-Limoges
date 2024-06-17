@@ -89,13 +89,13 @@ export default function Login() {
           
           <button type="submit"
             disabled={loading()}
-            class="bg-[rgb(248,113,113)] text-white rounded-md px-4 py-2 hover:bg-[rgb(248,113,113)]/90 transition w-full"
+            class="text-custom text-white rounded-md px-4 py-2 hover:text-custom/90 transition w-full"
           >
             {loading() ? "Connexion..." : "Se connecter !"}
           </button>
 
           <Show when={error()}>
-            <p class="text-red text-sm text-center">
+            <p class="text-custom text-sm text-center">
               Erreur: {error()}
             </p>
           </Show>

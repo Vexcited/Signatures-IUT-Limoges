@@ -48,7 +48,7 @@ const Updater: Component = () => {
     >
       <div class="p-4 flex flex-col gap-4">
         <div class="flex items-center justify-center gap-2">
-          <MdiUpdate class="text-red" />
+          <MdiUpdate class="text-custom" />
           <p class="text-[rgb(230,230,230)]">
             Une nouvelle mise à jour est disponible !
           </p>
@@ -70,7 +70,7 @@ const Updater: Component = () => {
                 <p class="text-[rgb(240,240,240)]">
                   Il y a eu {compare().total_commits} modification(s).
                 </p>
-                <a class="text-red text-sm hover:underline" href={compare().permalink_url}>
+                <a class="text-custom text-sm hover:underline" href={compare().permalink_url}>
                   Voir les commits sur GitHub
                 </a>
               </div>
@@ -112,7 +112,7 @@ const Updater: Component = () => {
           Plus tard
         </button>
         <button type="button" onClick={() => updateServiceWorker(true)}
-          class="px-4 py-2 rounded-lg bg-red text-[rgb(18,18,18)] font-medium"
+          class="px-4 py-2 rounded-lg text-custom text-[rgb(18,18,18)] font-medium"
         >
           Redémarrer
         </button>

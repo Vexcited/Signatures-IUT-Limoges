@@ -43,7 +43,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
     <div class="relative w-full">
       <a
         role="button"
-        class="sticky top-0 px-4 py-2 rounded-t-md border border-[rgb(248,113,113)] flex gap-4 items-center select-none cursor-pointer bg-[rgb(248,113,113)]"
+        class="sticky top-0 px-4 py-2 rounded-t-md border border-custom flex gap-4 items-center select-none cursor-pointer bg-custom"
         onClick={() => setOpened(prev => !prev)}
       >
         <p class="w-fit">
@@ -63,7 +63,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
         </p>
       </a>
 
-      <div class="py-2 flex border border-[rgb(248,113,113)] border-t-0 rounded-b-md w-full"
+      <div class="py-2 flex border border-custom border-t-0 rounded-b-md w-full"
         classList={{
           "flex-col gap-2 justify-center": opened(),
           "gap-4 justify-start px-4 overflow-x-auto": !opened(),
@@ -77,7 +77,7 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
                   {store.useCustomAveragesMode ? (customModulesAverage[module.id] ?? renderGrade(module.average)) : (renderGrade(module.average))}</p>
               }
             >
-              <div class="w-full flex justify-between hover:bg-[rgb(248,113,113)]/10 transition py-1.5 px-4 gap-2">
+              <div class="w-full flex justify-between hover:bg-custom/10 transition py-1.5 px-4 gap-2">
                 <h4 class="w-full truncate">
                   <span class="text-sm block">{module.id}</span> {module.name}
                 </h4>
