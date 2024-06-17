@@ -28,7 +28,7 @@ const fileContent = await readFile(swFilePath, "utf8");
 let newFileContent = fileContent.replace(/assets\//g, "_build/assets/");
 newFileContent = newFileContent.replace("//# sourceMappingURL=sw.js.map", "");
 
-const indexHtmlFilePath = join(process.cwd(), ".vercel/output/index.html");
+const indexHtmlFilePath = join(process.cwd(), ".vercel/output/static/index.html");
 const indexHtmlMD5 = await createMD5(indexHtmlFilePath);
 
 newFileContent = newFileContent.replace("REV_INDEX_HTML_TO_CHANGE", indexHtmlMD5);
