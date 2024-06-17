@@ -10,6 +10,7 @@ import { SafeStorage } from "../utils/safeStorage";
 import toast from "solid-toast";
 import { preferences, setSelectedSemester } from "../store/preferences";
 import UIColorPicker from "~/components/UIColorPicker";
+import { cleanSemesterName } from "~/utils/cleaners";
 
 export default function Home() {
   const selectedSemesterDump = () => {
@@ -92,7 +93,7 @@ export default function Home() {
                           "bg-custom text-white": semester.name === preferences.selectedSemester,
                         }}
                       >
-                        {semester.name}
+                        {cleanSemesterName(semester.name)}
                       </button>
                   )}
                 </For>
