@@ -8,19 +8,12 @@ import { clearUserData } from "../client/clear";
 import MdiCardsHeart from '~icons/mdi/cards-heart'
 import { SafeStorage } from "../utils/safeStorage";
 import toast from "solid-toast";
+import { preferences, setSelectedSemester } from "../store/preferences";
 
 export default function Home() {
-  /** `null` when not selected yet. */
-  const [_selectedSemester, _setSelectedSemester] = createSignal(SafeStorage.getItem("selectedSemester"));
-  /** Helper function that also stores in the localStorage to keep preference on reload. */
-  const setSelectedSemester = (semester: string) => {
-    SafeStorage.setItem("selectedSemester", semester);
-    _setSelectedSemester(semester);
-  };
-
-  const selectedSemester = () => {
-    if (typeof _selectedSemester() === "string" && store.dump) {
-      const semester = store.dump.semesters.find(semester => semester.name === _selectedSemester())
+  const selectedSemesterDump = () => {
+    if (typeof preferences.selectedSemester === "string" && store.dump) {
+      const semester = store.dump.semesters.find(semester => semester.name === preferences.selectedSemester)
       if (semester) return semester;
     }
 
@@ -47,7 +40,7 @@ export default function Home() {
       SafeStorage.setItem("dump", JSON.stringify(data));
   
       setStore({ dump: data, authenticated: true });
-      toast.success("Données mises à jour avec succès !");
+      toast.success("Données mises à jour !");
     }
     catch {
       toast("Vous êtes hors-ligne: les données peuvent être obsolètes.");
@@ -61,7 +54,7 @@ export default function Home() {
       </Show>
       <main class="pt-6 pb-12 mx-auto max-w-[864px] w-full p-4 space-y-2">
         <Show when={store.dump} fallback={
-          <p class="text-center">Récupération des données...</p>
+          <p class="text-center animate-pulse">Récupération des données...</p>
         }>
           {dump => (
             <div class="w-full">
@@ -94,7 +87,7 @@ export default function Home() {
                         class="w-fit px-4 py-2 rounded-md border border-[rgb(248,113,113)]"
                         onClick={() => setSelectedSemester(semester.name)}
                         classList={{
-                          "bg-[rgb(248,113,113)] text-white": semester.name === _selectedSemester(),
+                          "bg-[rgb(248,113,113)] text-white": semester.name === preferences.selectedSemester,
                         }}
                       >
                         {semester.name}
@@ -103,7 +96,7 @@ export default function Home() {
                 </For>
               </div>
 
-              <Show when={selectedSemester()} fallback={
+              <Show when={selectedSemesterDump()} fallback={
                 <p class="text-center">Sélectionnez un semestre pour voir les détails.</p>
               }>
                 {semester => <Semester {...semester()} />}
@@ -117,7 +110,7 @@ export default function Home() {
             <span class="flex items-center gap-1">Made with <MdiCardsHeart /> by</span>
             <span class="flex items-center gap-1"><a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited" target="_blank">Vexcited</a> and <a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited/Signatures-IUT-Limoges/graphs/contributors" target="_blank">contributors</a></span>
           </p>
-          <a class="text-sm opacity-60" href="https://github.com/Vexcited/Signatures-IUT-Limoges/tree/main">
+          <a class="text-sm opacity-60 hover:opacity-80" href="https://github.com/Vexcited/Signatures-IUT-Limoges/tree/main">
             Deployed from latest main commit.
           </a>
         </footer>
