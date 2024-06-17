@@ -35,6 +35,9 @@ export default defineConfig({
           ],
           navigateFallbackDenylist: [
             /^\/api.*/
+          ],
+          additionalManifestEntries: [
+            { url: "index.html", revision: null }
           ]
         },
 
