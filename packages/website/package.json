@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.0.8",
+    "@kobalte/core": "^0.13.3",
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.12.4",
     "@solidjs/start": "^0.5.10",
@@ -28,6 +29,7 @@
     "eslint": "^8.56.0",
     "unocss": "^0.58.5",
     "unocss-preset-primitives": "0.0.2-beta.0",
-    "unplugin-icons": "^0.18.5"
+    "unplugin-icons": "^0.18.5",
+    "vite-plugin-pwa": "^0.20.0"
   }
 }

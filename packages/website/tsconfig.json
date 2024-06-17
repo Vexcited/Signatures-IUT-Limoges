@@ -14,8 +14,14 @@
 		
     "types": [
       "vinxi/client",
+      "vite-plugin-pwa/solid",
       "unplugin-icons/types/solid"
     ],
+
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
 
 		"isolatedModules": true
 	},

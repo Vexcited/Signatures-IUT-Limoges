@@ -10,6 +10,7 @@ import { Toaster } from "solid-toast";
 import { preferences } from "./store/preferences";
 import { MetaProvider, Meta } from "@solidjs/meta";
 import { rgbToHex } from "./utils/colors";
+import Updater from "./components/modals/Updater";
 
 export default function App () {
   const primaryColor = () => preferences.primaryColor;
@@ -30,6 +31,7 @@ export default function App () {
         root={props => (
           <MetaProvider>
             <Meta name="theme-color" content={rgbToHex(...primaryColorHEX())} />
+            <Updater />
 
             <Suspense>
               {props.children}

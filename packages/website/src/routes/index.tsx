@@ -110,8 +110,8 @@ export default function Home() {
             <span class="flex items-center gap-1">Made with <MdiCardsHeart /> by</span>
             <span class="flex items-center gap-1"><a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited" target="_blank">Vexcited</a> and <a class="font-medium opacity-80 hover:opacity-100" href="https://github.com/Vexcited/Signatures-IUT-Limoges/graphs/contributors" target="_blank">contributors</a></span>
           </p>
-          <a class="text-sm opacity-60 hover:opacity-80" href="https://github.com/Vexcited/Signatures-IUT-Limoges/tree/main">
-            Deployed from latest main commit.
+          <a href={`https://github.com/Vexcited/Signatures-IUT-Limoges/tree/${__APP_COMMIT_SHA__=== "dev" ? "main" : __APP_COMMIT_SHA__}`} class="text-xs pt-1 text-red/80 hover:(underline text-red)">
+            {__APP_COMMIT_SHA__ === "dev" ? "development version" :__APP_COMMIT_SHA__}
           </a>
         </footer>
       </main>
