@@ -9,7 +9,7 @@ import MdiTextBoxEditOutline from '~icons/mdi/text-box-edit-outline'
 const SemestersTopNavigationBar: Component = () => (
   <TopNavigationBar>
     <div class="flex w-full border-l border-[rgb(40,40,40)]/40 divide-x divide-[rgb(40,40,40)]/40">
-      <For each={store.dump!.semesters}>
+      <For each={store.dump?.semesters ?? []}>
         {semester => (
             <button
               class="w-full transition-colors"

@@ -10,12 +10,12 @@ const Header = () => {
       <div class="mx-auto container flex justify-between h-19 px-4  items-center">
         <div class="flex flex-col">
           <h2 class="lg:text-lg">
-            {store.dump!.familyName} {store.dump!.firstName}
+            {store.dump?.familyName} {store.dump?.firstName}
           </h2>
           <p class="text-xs px-2 py-.5 bg-custom rounded-2 w-fit"
             style={{ color: theme.textColor() }}
           >
-            {store.dump!.className}
+            {store.dump?.className}
           </p>
         </div>
 
