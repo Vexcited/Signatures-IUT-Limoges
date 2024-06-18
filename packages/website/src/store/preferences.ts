@@ -7,7 +7,7 @@ interface Preferences {
 }
 
 export const DEFAULT_PREFERENCES: Required<Preferences> = {
-  primaryColor: "248, 113, 113",
+  primaryColor: "123, 158, 248",
   selectedSemester: null
 };
 

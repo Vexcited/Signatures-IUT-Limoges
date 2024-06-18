@@ -3,10 +3,17 @@ import { type Component, For, createSignal, Show, createMemo } from "solid-js";
 
 import MdiChevronDown from '~icons/mdi/chevron-down'
 import MdiChevronRight from '~icons/mdi/chevron-right'
-import { customModulesAverage, setCustomModulesAverage } from "../store/modules";
+import MdiCheck from '~icons/mdi/check'
+// import MdiCheckAll from '~icons/mdi/check-all'
+import MdiClose from '~icons/mdi/close'
+import { customModulesAverage } from "../store/modules";
 import { store } from "../store";
+import { theme } from "~/store/theme";
+import { renderGrade } from "~/utils/grades";
+import Module from "./Module";
 
-const renderGrade = (value?: number | null) => value?.toFixed(2) ?? "N/A";
+const fixSkillName = (value: string) => value
+  .replace("l?", "l'");
 
 const Skill: Component<SignaturesSkillDump> = (skill) => {
 
@@ -35,76 +42,56 @@ const Skill: Component<SignaturesSkillDump> = (skill) => {
       }
     }
 
-    if (totalCoefficients === 0) return "N/A";
-    return (sum / totalCoefficients).toFixed(2);
+    if (totalCoefficients === 0) return null;
+    return sum / totalCoefficients;
   });
 
+  const average = () => store.useCustomAveragesMode ? customGlobalAverage() : skill.globalAverage;
+
   return (
-    <div class="relative w-full">
-      <a
-        role="button"
-        class="sticky top-0 px-4 py-2 rounded-t-md border border-custom flex gap-4 items-center select-none cursor-pointer bg-custom"
-        onClick={() => setOpened(prev => !prev)}
-      >
-        <p class="w-fit">
-          {opened() ? <MdiChevronDown /> : <MdiChevronRight />}
-        </p>
-        <div class="flex flex-col w-full overflow-hidden">
-          <h2 class="text-sm">
-            UE {skill.id}
-          </h2>
-          <h3 class="truncate">
-            {skill.name}
-          </h3>
+    <div class="relative w-full max-w-[578px] flex flex-col gap-1">
+      <div class="z-10 sticky top-[113px]">
+        {/* Small element to hide elements scrolling in the background. */}
+        <div class="-z-10 h-[20px] top-0 inset-x-0 absolute w-full bg-[rgb(9,9,9)]" />
+
+        <div class="overflow-hidden relative h-[58px] mt-[7px] rounded-md flex divide-x divide-[rgb(40,40,40)]/80 border border-[rgb(40,40,40)]/80 bg-[rgb(18,18,18)] text-white">
+          <button type="button" onClick={() => setOpened(prev => !prev)} class="px-3.5 h-full flex items-center justify-center text-xl"
+            classList={{ "bg-[rgb(24,24,24)]": opened(), "bg-[rgb(18,18,18)]": !opened() }}  
+          >
+            {opened() ? <MdiChevronDown /> : <MdiChevronRight />}
+          </button>
+
+          <div class="flex flex-col w-full overflow-hidden items-start justify-center px-4">
+            <span class="text-sm opacity-75">
+              UE {skill.id}
+            </span>
+            <h3 class="truncate w-full" title={skill.name}>
+              {fixSkillName(skill.name)}
+            </h3>
+          </div>
+
+          <div class="flex items-center gap-2 h-full flex-shrink-0 px-3"
+            style={{
+              background: theme.gradeColor(average(), "15%"),
+              color: theme.gradeColor(average(), "100%")
+            }}
+          >
+            {average() ? average()! > 8 ? <MdiCheck /> : <MdiClose /> : null}
+            <p class="font-medium text-xl ml-auto">
+              {renderGrade(average())}
+            </p>
+          </div>
         </div>
+      </div>
 
-        <p class="font-medium text-xl ml-auto">
-          {store.useCustomAveragesMode ? (customGlobalAverage()) : (skill.globalAverage ?? "N/A")}
-        </p>
-      </a>
-
-      <div class="py-2 flex border border-custom border-t-0 rounded-b-md w-full"
+      <div class="z-0 flex border border-[rgb(40,40,40)]/80 divide-y divide-[rgb(40,40,40)]/40 rounded-md w-full"
         classList={{
-          "flex-col gap-2 justify-center": opened(),
-          "gap-4 justify-start px-4 overflow-x-auto": !opened(),
+          "flex-col justify-center": opened(),
+          "py-2 gap-4 justify-start px-4 overflow-x-auto": !opened(),
         }}
       >
         <For each={skill.modules}>
-          {(module, i) => (
-            <Show when={opened()}
-              fallback={
-                <p class="w-full text-center">
-                  {store.useCustomAveragesMode ? (customModulesAverage[module.id] ?? renderGrade(module.average)) : (renderGrade(module.average))}</p>
-              }
-            >
-              <div class="w-full flex justify-between hover:bg-custom/10 transition py-1.5 px-4 gap-2">
-                <h4 class="w-full truncate">
-                  <span class="text-sm block">{module.id}</span> {module.name}
-                </h4>
-
-                <div class="shrink-0 flex flex-col w-fit justify-end items-center">
-                  <Show when={store.useCustomAveragesMode && module.average === null} fallback={
-                    <p class="font-medium w-full text-right">{renderGrade(module.average)}</p>
-                  }>
-                    <input
-                      type="text"
-                      inputmode="numeric"
-                      class="text-right border border-white rounded-full bg-black text-white text-center px-2 py-.5 w-15"
-                      value={customModulesAverage[module.id] ?? ""}
-                      onInput={(event) => {
-                        let valueAsNumber = parseFloat(event.currentTarget.value.trim());
-                        if (valueAsNumber > 20) valueAsNumber = 20;
-
-                        setCustomModulesAverage(module.id, Number.isNaN(valueAsNumber) ? null : valueAsNumber);
-                      }}
-                    />
-                  </Show>
-
-                  <p class="text-[rgb(160,160,160)] text-sm w-full text-right">x{module.coefficient.toFixed(2)}</p>
-                </div>
-              </div>
-            </Show>
-          )}
+          {(module) => <Module {...module} skillOpened={opened()} />}
         </For>
       </div>
       

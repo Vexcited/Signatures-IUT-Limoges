@@ -15,7 +15,7 @@ const Semester: Component<SignaturesSemesterDump> = (semester) => {
   }));
 
   return (
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col items-center gap-4">
       <For each={semester.skills}>
         {skill => <Skill {...skill} />}
       </For>

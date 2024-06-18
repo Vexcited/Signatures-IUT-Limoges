@@ -1,0 +1,39 @@
+/** Hide manual inputs. */
+.color-form {
+  display: none !important;
+}
+
+/** Hide alpha range picker. */
+.color-control:last-child {
+  display: none;
+}
+
+.picker-toggle {
+  padding: 0;
+}
+
+.color-picker {
+  height: 32px;
+  width: 32px;
+  display: block;
+  background: rgb(var(--custom-color));
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 386px) {
+  .color-picker {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.color-preview {
+  display: none;
+}
+
+#color-picker-picker {
+  margin-top: 8px;
+  transition: none;
+  transform: translateX(calc(-100% + 38px));
+  z-index: 100;
+}

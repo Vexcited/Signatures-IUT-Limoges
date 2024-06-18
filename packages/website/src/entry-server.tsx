@@ -4,7 +4,7 @@ import { createHandler, StartServer } from "@solidjs/start/server";
 export default createHandler(() => (
   <StartServer
     document={({ assets, children, scripts }) => (
-      <html lang="fr">
+      <html lang="fr" class="">
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,8 +35,8 @@ export default createHandler(() => (
           <link rel="icon" href="/favicon.ico" />
           {assets}
         </head>
-        <body class="bg-[rgb(18,18,18)] text-[rgb(250,250,250)]" style={{ "font-family": "'Poppins', sans-serif" }}>
-          <div id="app">{children}</div>
+        <body class=" bg-[rgb(9,9,9)] text-[rgb(250,250,250)]" style={{ "font-family": "'Poppins', sans-serif" }}>
+          <div id="app" class="">{children}</div>
           {scripts}
         </body>
       </html>
