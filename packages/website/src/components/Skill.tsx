@@ -13,7 +13,8 @@ import { renderGrade } from "~/utils/grades";
 import Module from "./Module";
 
 const fixSkillName = (value: string) => value
-  .replace("l?", "l'");
+  .replace("l?", "l'")
+  .replace("d?", "d'");
 
 const Skill: Component<SignaturesSkillDump> = (skill) => {
 
