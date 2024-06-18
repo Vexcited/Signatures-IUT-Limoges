@@ -11,7 +11,7 @@ export default createHandler(() => (
 
           <meta name="color-scheme" content="dark light" />
           <meta name="msapplication-TileColor" content="#FFFFFF" />
-          <meta name="theme-color" content="#FFFFFF" />
+          <meta name="theme-color" content="#000000" data-sm />
 
           <title>Signatures - IUT de Limoges</title>
           <link rel="manifest" href="/manifest.webmanifest" />
