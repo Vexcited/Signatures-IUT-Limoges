@@ -63,44 +63,66 @@ export default function Login() {
         <Navigate href="/" />
       </Show>
 
-      <main class="flex flex-col items-center justify-center h-screen p-4">
-        <h1 class="text-xl">
-          Saisie des identifiants
-        </h1>
-        <p class="text-sm text-center my-2 max-w-[300px]">
-          Ces identifiants vont être utilisé pour se connecter au VPN de l'Université pour enfin se connecter à Signatures.
-        </p>
+      <div class="h-screen flex">
+        <div class="bg-gradient-to-br from-[rgb(30,30,30)] to-[rgb(12,12,12)] h-full w-full hidden lg:block border-r border-[rgb(40,40,40)]" />
 
-        <form onSubmit={handleAuthenticate}
-          class="flex flex-col gap-4 w-full max-w-[300px] p-4"
-        >
-          <input name="username" type="text"
-            class="border border-gray-300 rounded-md bg-transparent text-white px-4 py-2"
-            value={username()}
-            onInput={(e) => setUsername(e.currentTarget.value)}
-            placeholder="Nom d'utilisateur"
-          />
-          <input name="password" type="password"
-            class="border border-gray-300 rounded-md bg-transparent text-white px-4 py-2"
-            value={password()}
-            onInput={(e) => setPassword(e.currentTarget.value)}
-            placeholder="Mot de passe"
-          />
-          
-          <button type="submit"
-            disabled={loading()}
-            class="text-custom text-white rounded-md px-4 py-2 hover:text-custom/90 transition w-full"
-          >
-            {loading() ? "Connexion..." : "Se connecter !"}
-          </button>
-
-          <Show when={error()}>
-            <p class="text-custom text-sm text-center">
-              Erreur: {error()}
+        <main class="flex flex-col items-center flex-shrink-0 w-full lg:max-w-[600px]">
+          <div class="flex flex-col bg-[rgb(18,18,18)] border-b border-[rgb(40,40,40)] p-4 lg:p-8 w-full">
+            <h1 class="text-lg">
+              Connexion à Signatures
+            </h1>
+            <p class="text-sm my-2 opacity-80">
+              Notez que ces identifiants vont être utilisés pour se connecter à
+              "<a class="underline" href="https://iut-signatures.unilim.fr/">iut-signatures.unilim.fr</a>" uniquement.
+              <br /><br />
+              Étant donné que le serveur web est protégé par le VPN de l'université, on utilise le proxy "<a class="underline" href="https://iut-signatures-proxy.vexcited.com/">iut-signatures-proxy.vexcited.com</a>".
             </p>
-          </Show>
-        </form>
-      </main>
+          </div>
+
+          <form onSubmit={handleAuthenticate}
+            class="p-4 lg:p-8 flex flex-col gap-4 w-full h-full lg:h-auto justify-between lg:justify-start"
+          >
+            <div class="flex flex-col gap-6">
+              <label class="flex flex-col gap-1">
+                <span class="text-sm text-white/85">Nom d'utilisateur</span>
+                <input name="username" type="text"
+                  class="border border-[rgb(80,80,80)] rounded-md bg-transparent text-white px-4 py-2 outline-none focus:outline-white/90"
+                  value={username()}
+                  onInput={(e) => setUsername(e.currentTarget.value)}
+                  placeholder="Nom d'utilisateur"
+                />
+              </label>
+              <label class="flex flex-col gap-1">
+                <span class="text-sm text-white/85">Mot de passe</span>
+                <input name="password" type="password"
+                  class="border border-[rgb(80,80,80)] rounded-md bg-transparent text-white px-4 py-2 outline-none focus:outline-white/90"
+                  value={password()}
+                  onInput={(e) => setPassword(e.currentTarget.value)}
+                  placeholder="Mot de passe"
+                />
+              </label>
+            </div>
+            
+            <Show when={error()}>
+              <div class="border border-red rounded-md text-center bg-red/10 py-4 flex flex-col gap-2">
+                <p class="text-lg">Une erreur est survenue !</p>
+                <p class="text-red text-sm text-center">
+                  {error() || "(aucune erreur renvoyée)"}
+                </p>
+              </div>
+            </Show>
+
+            <button type="submit"
+              disabled={loading()}
+              class="bg-white hover:bg-white/60 rounded-md px-4 py-2 text-[rgb(9,9,9)] transition-colors w-full md:mt-8 outline-none focus:outline-white/90"
+            >
+              {loading() ? "Connexion..." : "Se connecter"}
+            </button>
+
+          </form>
+        </main>
+      </div>
+
     </>
   );
 }
