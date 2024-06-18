@@ -98,7 +98,7 @@ export default function Home() {
         <button class="w-full hover:opacity-80 px-4 py-6 bg-red text-black border-t border-[rgb(40,40,40)]/40 uppercase font-medium transition-colors"
           onClick={() => clearUserData(true)}
         >
-          Effacer toutes les données
+          Déconnexion
         </button>
       </div>
     </div>
