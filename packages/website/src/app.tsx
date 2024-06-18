@@ -13,15 +13,14 @@ import { rgbToHex } from "./utils/colors";
 import Updater from "./components/modals/Updater";
 
 export default function App () {
-  const primaryColor = () => preferences.primaryColor;
-  const primaryColorHEX = () => primaryColor()
+  const primaryColorHEX = () => preferences.primaryColor
     .split(",")
-    .map(i => parseInt(i.trim())) as [r: number, g: number, b: number];
+    .map(Number) as [r: number, g: number, b: number];
 
   createEffect(() => {
     // setup the custom color from the user preferences.
     const root = document.querySelector(':root') as HTMLElement;
-    root.style.setProperty('--custom-color', primaryColor());
+    root.style.setProperty('--custom-color', preferences.primaryColor);
   });
 
   return (
