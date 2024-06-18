@@ -1,13 +1,12 @@
 import { store } from "~/store";
 import { theme } from "~/store/theme";
 import UIColorPicker from "./UIColorPicker";
-import MdiFormatPaint from '~icons/mdi/format-paint'
 import MdiPaletteSwatchVariant from '~icons/mdi/palette-swatch-variant'
 
 const Header = () => {
   return (
-    <header class="z-50 sticky top-0 bg-[rgb(9,9,9)] border-b border-[rgb(40,40,40)]/40">
-      <div class="mx-auto container flex justify-between h-19 px-4  items-center">
+    <header class="z-50 sticky top-0 bg-[rgb(9,9,9)] border-b border-[rgb(40,40,40)]/40 mx-auto container">
+      <div class="flex justify-between h-19 px-4  items-center">
         <div class="flex flex-col">
           <h2 class="lg:text-lg">
             {store.dump?.familyName} {store.dump?.firstName}
@@ -23,8 +22,6 @@ const Header = () => {
           <MdiPaletteSwatchVariant font-size="18" />
           <UIColorPicker />
         </div>
-
-
       </div>
     </header>
   );

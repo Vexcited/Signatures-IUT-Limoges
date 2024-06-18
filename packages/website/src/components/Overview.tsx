@@ -8,7 +8,7 @@ const Overview: Component = () => {
     <div class="relative">
       <OverviewTopBar opened={opened()} onOpenChange={setOpened} />
       <Show when={opened()}>
-        <section class="border-b border-[rgb(40,40,40)]/40 bg-[rgb(16,16,16)] ">
+        <section class="container mx-auto border-b border-x border-[rgb(40,40,40)]/40 bg-[rgb(16,16,16)] ">
           <div class="container mx-auto px-12 flex flex-col items-center justify-center py-8 gap-4">
             <h1 class="text-xl font-semibold text-center">
               Cette fonctionnalité est en cours de développement.
