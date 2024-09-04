@@ -87,11 +87,11 @@ export default function Home() {
       <div>
         <footer class="py-6 flex flex-col items-center justify-center text-center border-t border-[rgb(40,40,40)]/40">
           <p class="flex flex-col pb-2 items-center">
-            <span class="flex items-center gap-1">Made with <MdiCardsHeart class="text-custom" /> by</span>
-            <span class="flex items-center gap-1"><a class="font-medium opacity-80 hover:opacity-100 text-custom" href="https://github.com/Vexcited" target="_blank">Vexcited</a> and <a class="font-medium opacity-80 hover:opacity-100 text-custom" href="https://github.com/Vexcited/Signatures-IUT-Limoges/graphs/contributors" target="_blank">contributors</a></span>
+            <span class="flex items-center gap-1">Fait avec <MdiCardsHeart class="text-custom" /> par</span>
+            <span class="flex items-center gap-1"><a class="font-medium opacity-80 hover:opacity-100 text-custom" href="https://github.com/Vexcited" target="_blank">Vexcited</a> et <a class="font-medium opacity-80 hover:opacity-100 text-custom" href="https://github.com/Vexcited/Signatures-IUT-Limoges/graphs/contributors" target="_blank">les contributeurs</a></span>
           </p>
           <a href={`https://github.com/Vexcited/Signatures-IUT-Limoges/tree/${__APP_COMMIT_SHA__=== "dev" ? "main" : __APP_COMMIT_SHA__}`} class="text-xs pt-1 text-custom/80 hover:(underline text-custom)">
-            {__APP_COMMIT_SHA__ === "dev" ? "development version" :__APP_COMMIT_SHA__}
+            version @{__APP_COMMIT_SHA__ === "dev" ? "development version" :__APP_COMMIT_SHA__}
           </a>
         </footer>
 
