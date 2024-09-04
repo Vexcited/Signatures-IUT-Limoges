@@ -6,10 +6,10 @@ import { createLogoutResponse } from "../../server/logout";
 
 import {
   dumpSignatureResponse,
-  readSignaturesPage,
   WebVPNWrongCredentials,
   WebVPNRateLimited,
-  WrongCredentials
+  WrongCredentials,
+  readSignaturesPageFromWebVPN
 } from "signatures-iut-limoges";
 
 export const GET: APIHandler = async ({ nativeEvent }) => {
@@ -19,8 +19,7 @@ export const GET: APIHandler = async ({ nativeEvent }) => {
   const credentials = decryptCredentials(cookie);
 
   try {
-    const buffer = await readSignaturesPage(credentials.username, credentials.password, "https://iut-signatures-proxy.vexcited.com") as unknown as Buffer;
-    const html = buffer.toString("latin1");
+    const html = await readSignaturesPageFromWebVPN(credentials.username, credentials.password);
     const dump = dumpSignatureResponse(html);
 
     return new Response(JSON.stringify(dump), {
