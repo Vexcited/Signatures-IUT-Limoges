@@ -1,12 +1,15 @@
-# Wrapper for IUT Signatures (Limoges)
+> [!WARNING]  
+> This repository has now been archived. Most of it no longer works since services has been updated. You'll probably want to check out [Pawnilim](https://github.com/LiterateInk/Pawnilim) for the library and [Literate](https://literate.ink) for the application, both are being actively developed by the owner of this repository.
 
-Contains a very simple [NPM package for Node.js](https://www.npmjs.com/package/signatures-iut-limoges) that allows you to get and parse the timetable of the IUT Informatique of Limoges in a very simple and intuitive way.
+# Wrapper for IUT Signatures (IUT du Limousin)
 
-A demonstration website has been made to showcase the package: <https://signatures-iut-limoges.vercel.app/>, you can find the source code for it in the section below.
+Contains a very simple NPM package for Node.js that allows you to retrieve and parse the grades of the IUT du Limousin in a very simple and intuitive way.
+
+A demonstration website has been created to showcase the package: ~~<https://signatures-iut-limoges.vercel.app/>~~, the source code for which can be found in the section below.
 
 ## Sources
 
 Since this is a monorepo, the sources are located in the `packages` directory.
 
-- [`packages/library`](./packages/library/): the [`signatures-iut-limoges`](https://www.npmjs.com/package/signatures-iut-limoges) library itself ;
-- [`packages/website`](./packages/website/): the website for the demo of the library.
+- [`packages/library`](./packages/library/): the ~~[`signatures-iut-limoges`](https://www.npmjs.com/package/signatures-iut-limoges)~~ library itself ;
+- [`packages/website`](./packages/website/): the website for the library demo.
